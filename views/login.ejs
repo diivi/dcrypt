@@ -1,0 +1,13 @@
+<%- include('header'); -%>
+<form action="/login" method="post">
+  <h2>Login</h2>
+  <label for="email">Email</label>
+  <input type="email" name="email" required>
+  <div class="error email">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" required>
+  <div class="error password"> 
+  <button>Login</button>
+</form>
+<%- include('footer'); -%>

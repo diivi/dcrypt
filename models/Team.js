@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const teamSchema = new mongoose.Schema({
-  name: {
+  school: {
     type: String,
     required: true,
     max: 50,
@@ -9,8 +9,7 @@ const teamSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    max: 50,
-    min: 5,
+    lowercase: true,
   },
   password: {
     type: String,

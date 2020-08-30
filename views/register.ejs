@@ -1,0 +1,43 @@
+<%- include('header'); -%>
+<form action="/register" method="POST">
+  <h2>Register</h2>
+  <% if (locals.alregistered) { %>
+  <p class="error">Team Already Registered!</p>
+  <% } %> <% if (locals.registered) { %>
+  <p style="color: green">Team Registered!</p>
+  <% } %>
+  <label for="email">Email</label>
+  <input
+    type="email"
+    name="email"
+    required
+    value="<% if (locals.original){ %><%- locals.original.email %><% } %>"
+  />
+  <%if (locals.errors) { %> <%if (locals.errors.includes("email")) { %>
+  <div class="error email">Please enter a valid email address</div>
+  <% } %> <% } %>
+
+  <label for="password">Password</label>
+  <input
+    type="text"
+    name="password"
+    required
+    value="<% if (locals.original){ %><%- locals.original.password %><% } %>"
+  />
+  <%if (locals.errors) { %> <%if (locals.errors.includes("password")) { %>
+  <div class="error email">Password length must be atleast 8 characters</div>
+  <% } %> <% } %>
+
+  <label for="school">School</label>
+  <input
+    type="text"
+    name="school"
+    required
+    value="<% if (locals.original){ %><%- locals.original.school %><% } %>"
+  />
+  <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
+  <div class="error email">School name can not exceed 50 characters</div>
+  <% } %> <% } %>
+  <input type="submit" value="Register" />
+</form>
+<%- include('footer'); -%>

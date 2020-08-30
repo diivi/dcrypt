@@ -1,13 +1,14 @@
 const jwt = require("jsonwebtoken");
+const Team = require("../models/Team");
 
-module.exports = function (req, res, next) {
-  const token = req.header("auth-token");
-  if (!token) return res.status(401).send("Please Login");
+module.exports = async function (req, res, next) {
+  const token = req.cookies.team;
+  if (!token) return res.redirect("/login");
   try {
     const verified = jwt.verify(token, process.env.JWT);
-    req.team = verified;
+    req.team = await Team.findOne({ _id: verified._id });
     next();
   } catch (err) {
-    res.status(400).send("Invalid Token");
+    res.redirect("/login");
   }
 };
