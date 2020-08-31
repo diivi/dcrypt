@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-
-
 const questionSchema = new mongoose.Schema({
   qnum: {
     type: Number,
@@ -17,6 +15,10 @@ const questionSchema = new mongoose.Schema({
   },
   points: {
     type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
     required: true,
   },
 });

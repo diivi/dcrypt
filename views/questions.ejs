@@ -1,0 +1,38 @@
+<%- include('header'); -%>
+<div>
+  <% locals.questions.forEach( function (element){ %>
+  <div class="question">
+    <h1><%- element.points %></h1>
+    <p><%- element.title %></p>
+    <button onclick="openModal('<%- element.title %>')">Answer</button>
+  </div>
+  <% }) %> <% locals.questions.forEach( function (element){ %>
+  <div id="<%- element.title %>" class="qmodal">
+    <form action="/answer" method="POST">
+      <p>
+        <input
+          type="hidden"
+          value="<%= element.title%>"
+          name="title"
+          class="defender"
+          readonly
+        />
+      </p>
+      <p class="close" onclick="closeModal('<%= element.title %>')">X</p>
+      <p><%- element.question %></p>
+      <input type="text" name="ans" />
+      <button>Submit</button>
+    </form>
+  </div>
+  <% }) %>
+</div>
+<script>
+  function openModal(id) {
+    console.log(id);
+    document.getElementById(id).style.display = "block";
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+</script>
+<%- include('footer'); -%>

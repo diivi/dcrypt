@@ -12,6 +12,7 @@ router.post("/questionMaker", verifynCrypt, async (req, res) => {
     question: req.body.ques,
     answer: req.body.ans,
     points: req.body.points,
+    title: req.body.title
   });
   try {
     const made = await question.save();

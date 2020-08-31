@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
 const boardRoute = require("./routes/leaderboard");
 const admin = require("./routes/admin");
+const questionRoute = require("./routes/questions");
 
 const attackRoute = require("./controllers/attack");
 const makerRoute = require("./controllers/questionMaker");
@@ -40,6 +41,7 @@ app.use("/", boardRoute);
 app.use("/", attackRoute);
 app.use("/", makerRoute);
 app.use("/", admin);
+app.use("/", questionRoute);
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { message: "hello " });

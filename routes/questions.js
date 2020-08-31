@@ -12,5 +12,17 @@ router.get("/questions", verify, (req, res) => {
       res.render("questions.ejs", { team: req.team, questions: docs });
     });
 });
-
+router.post("/answer", verify, async (req, res) => {
+  const question = await Questions.findOne({
+    answer: req.body.ans,
+    title: req.body.title,
+  }).catch((err) => {
+    console.log(err);
+  });
+  if (!question) {
+    res.status(401).send("wrogn");
+  }
+  console.log(question);
+});
+//TODO:Answers Verify + Points add + list of strings in user modal
 module.exports = router;
