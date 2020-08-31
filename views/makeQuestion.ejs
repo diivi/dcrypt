@@ -1,0 +1,24 @@
+<%- include('header'); -%>
+<form action="/questionMaker" method="POST" class="loginform">
+  <% if (locals.registered) { %>
+  <p style="color: green">Question Created!</p>
+  <% } %>
+  <label for="qnum">Number</label>
+  <input style="border: 1px solid black" type="number" name="qnum" required />
+
+  <label for="ques">Question</label>
+  <input type="text" name="ques" required />
+
+  <label for="ans">Answer</label>
+  <input type="text" name="ans" required />
+
+  <label for="points">Points</label>
+  <input style="border: 1px solid black" type="number" name="points" required />
+  <button>Create Question</button>
+</form>
+
+<form action="/nlogout" method="GET">
+  <button>Logout</button>
+</form>
+
+<%- include('footer'); -%>

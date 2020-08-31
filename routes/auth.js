@@ -53,9 +53,12 @@ router.post("/login", async (req, res) => {
   res.redirect("/dashboard");
 });
 
+
+
 router.get("/logout", verify, (req, res) => {
   res.cookie("team", "", { maxAge: 1 });
   res.redirect("/");
 });
+
 
 module.exports = router;

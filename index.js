@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+
 const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
 const boardRoute = require("./routes/leaderboard");
-const attackRoute = require("./routes/attack");
+const admin = require("./routes/admin");
+
+const attackRoute = require("./controllers/attack");
+const makerRoute = require("./controllers/questionMaker");
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
@@ -33,6 +38,8 @@ app.use("/", authRoute);
 app.use("/", dashRoute);
 app.use("/", boardRoute);
 app.use("/", attackRoute);
+app.use("/", makerRoute);
+app.use("/", admin);
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { message: "hello " });
@@ -43,7 +50,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login.ejs", { message: "hello " });
+  res.render("login.ejs");
 });
 
 app.listen(port, () => console.log(`running on port ${port}`));
