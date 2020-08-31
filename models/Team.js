@@ -21,6 +21,53 @@ const teamSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  fp: {
+    type: Number,
+    default: 0,
+    min: 0,
+  },
+  bp: {
+    type: Number,
+    default: 0,
+    min: 0,
+  },
+  dp: {
+    type: Number,
+    default: 0,
+    min: 0,
+  },
+  troops: {
+    soldiers: {
+      type: Number,
+      default: 0,
+    },
+    aircrafts: {
+      type: Number,
+      default: 0,
+    },
+    bombers: {
+      type: Number,
+      default: 0,
+    },
+    tanks: {
+      type: Number,
+      default: 0,
+    },
+  },
+});
+
+teamSchema.pre("updateOne", function (next) {
+  data = this.getUpdate();
+  try {
+    if (data["$set"].dp > 0) {
+      next();
+    } else {
+      data["$set"].dp = 0;
+      next();
+    }
+  } catch {
+    next();
+  }
 });
 
 module.exports = mongoose.model("Team", teamSchema);

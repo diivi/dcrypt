@@ -1,0 +1,109 @@
+<%- include('header'); -%> 
+<table>
+  <% locals.allteams.forEach( function (element){ %> <% if
+  ((element._id).toString()===(locals.team._id).toString()) { %>
+  <tr>
+    <th>You</th>
+    <td><%- element.fp %></td>
+  </tr>
+  <% }else{ %>
+  <tr>
+    <th><%- element.school %></th>
+    <td><%- element.fp %></td>
+    <td>
+      <span onclick="openModal('<%- element.school %>')">Attack</span>
+    </td>
+  </tr>
+  <% }}) %>
+</table>
+<% locals.allteams.forEach( function (element){ %> <% if
+((element._id).toString()!==(locals.team._id).toString()) { %>
+<div id="<%= element.school %>" class="mymodal">
+  <form action="/attack" method="POST" class="attack">
+    <p class="close" onclick="closeModal('<%= element.school %>')">X</p>
+    <p>
+      Attacking <%= element.school %>
+      <input
+        type="hidden"
+        value="<%= element.school %>"
+        name="defender"
+        class="defender"
+        readonly
+      />
+    </p>
+    <div class="number-input">
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+      ></button>
+      <input
+        class="quantity soldier"
+        min="0"
+        name="soldier"
+        value="0"
+        type="number"
+        max="<%= locals.team.troops.soldiers %>"
+      />
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+        class="plus"
+      ></button>
+    </div>
+    <div class="number-input">
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+      ></button>
+      <input
+        class="quantity aircraft"
+        min="0"
+        name="aircraft"
+        value="0"
+        type="number"
+        max="<%= locals.team.troops.aircrafts %>"
+      />
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+        class="plus"
+      ></button>
+    </div>
+    <div class="number-input">
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+      ></button>
+      <input
+        class="quantity tank"
+        min="0"
+        name="tank"
+        value="0"
+        type="number"
+        max="<%= locals.team.troops.tanks %>"
+      />
+      <button
+        type="button"
+        onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+        class="plus"
+      ></button>
+    </div>
+    <input type="submit" value="Attack" />
+  </form>
+</div>
+<% }}) %>
+
+<script type="text/javascript">
+  function openModal(school) {
+    $(".mymodal").each(function () {
+      $(this).css({ display: "none" });
+    });
+    document.getElementById(school).style.display = "block";
+  }
+  function closeModal(school) {
+    $(".mymodal").each(function () {
+      $(this).css({ display: "none" });
+    });
+  }
+</script>
+<%- include('footer'); -%>

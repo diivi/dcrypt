@@ -1,7 +1,11 @@
-<%- include('header'); -%>
+<%- include('header'); -%><% if (locals.success ==='true') { %>
+<h1 style="color: green">Attack Successful!</h1>
+<% }else if(locals.success ==='false') { %>
+<h1 color="red">Attack Unsuccessful!</h1>
+<% } %>
 <h1><%- locals.team.school %></h1>
 <form action="/logout" method="get">
   <button>Logout</button>
 </form>
-
+<a href="/leaderboard">Leaderboard</a>
 <%- include('footer'); -%>
