@@ -36,6 +36,11 @@ const teamSchema = new mongoose.Schema({
     default: 0,
     min: 0,
   },
+  questions: [
+    {
+      type: String,
+    },
+  ],
   troops: {
     soldiers: {
       type: Number,

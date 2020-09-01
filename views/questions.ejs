@@ -1,12 +1,19 @@
 <%- include('header'); -%>
 <div>
   <% locals.questions.forEach( function (element){ %>
-  <div class="question">
+  <div
+    class="question"
+    style="background:<% if (locals.team.questions.includes(element.title)) { %>rgb(120, 120, 120)<% } %>"
+  >
     <h1><%- element.points %></h1>
     <p><%- element.title %></p>
-    <button onclick="openModal('<%- element.title %>')">Answer</button>
+
+    <button <% if (locals.team.questions.includes(element.title)) { %>
+      disabled <% } %> onclick="openModal('<%- element.title %>')">Answer
+    </button>
   </div>
-  <% }) %> <% locals.questions.forEach( function (element){ %>
+  <% }) %> <% locals.questions.forEach( function (element){ %> <% if
+  (!locals.team.questions.includes(element.title)) { %>
   <div id="<%- element.title %>" class="qmodal">
     <form action="/answer" method="POST">
       <p>
@@ -20,11 +27,11 @@
       </p>
       <p class="close" onclick="closeModal('<%= element.title %>')">X</p>
       <p><%- element.question %></p>
-      <input type="text" name="ans" />
+      <input type="text" name="ansf" />
       <button>Submit</button>
     </form>
   </div>
-  <% }) %>
+  <% } }) %>
 </div>
 <script>
   function openModal(id) {

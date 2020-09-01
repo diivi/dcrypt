@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const verify = require("../middleware/tokenVerification");
 const Questions = require("../models/Questions");
+const Team = require("../models/Team");
 
 router.get("/questions", verify, (req, res) => {
   Questions.find({})
@@ -20,9 +21,24 @@ router.post("/answer", verify, async (req, res) => {
     console.log(err);
   });
   if (!question) {
-    res.status(401).send("wrogn");
+    res.redirect("/questions");
+    console.log("wrogn");
   }
-  console.log(question);
+
+  Team.updateOne(
+    { school: req.team.school },
+    { $push: { questions: req.body.title } },
+    { multi: true },
+    answercallback
+  );
+  function answercallback(err, num) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(num);
+    }
+  }
+  res.redirect("/questions");
 });
-//TODO:Answers Verify + Points add + list of strings in user modal
+//TODO: Points add
 module.exports = router;
