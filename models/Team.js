@@ -59,6 +59,11 @@ const teamSchema = new mongoose.Schema({
       default: 0,
     },
   },
+  dpVisible:{
+    type: Boolean,
+    default: false,
+  },
+  
 });
 
 teamSchema.pre("updateOne", function (next) {

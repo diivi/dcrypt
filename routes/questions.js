@@ -32,7 +32,7 @@ router.post("/answer", verify, async (req, res) => {
     );
     Team.updateOne(
       { school: req.team.school },
-      { $inc: { fp: question.points } },
+      { $inc: { bp: question.points, fp: 500 } },
       { multi: true },
       pointscallback
     );

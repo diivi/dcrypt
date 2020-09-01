@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-var cron = require("node-cron");
+// var cron = require("node-cron");
+var helmet = require('helmet')
+
 
 const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
@@ -33,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.json());
+app.use(helmet())
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -57,21 +60,21 @@ app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
 
-fpIncrease = cron.schedule(
-  "0 * * * *",
-  () => {
-    Team.updateMany({}, { $inc: { fp: 100 } }, { multi: true }, inccallback);
-    function inccallback(err, num) {
-      if (err) {
-        console.log(err);
-      }
-    }
-  },
-  {
-    scheduled: true,
-    timezone: "Asia/Kolkata",
-  }
-);
-fpIncrease.start();
+// fpIncrease = cron.schedule(
+//   "0 * * * *",
+//   () => {
+//     Team.updateMany({}, { $inc: { fp: 100 } }, { multi: true }, inccallback);
+//     function inccallback(err, num) {
+//       if (err) {
+//         console.log(err);
+//       }
+//     }
+//   },
+//   {
+//     scheduled: true,
+//     timezone: "Asia/Kolkata",
+//   }
+// );
+// fpIncrease.start();
 
 app.listen(port, () => console.log(`running on port ${port}`));
