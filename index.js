@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+var cron = require("node-cron");
 
 const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
@@ -16,6 +17,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const port = 5000 || process.env.PORT;
+const Team = require("./models/Team");
 
 require("dotenv").config();
 
@@ -54,5 +56,22 @@ app.get("/register", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
+
+fpIncrease = cron.schedule(
+  "0 * * * *",
+  () => {
+    Team.updateMany({}, { $inc: { fp: 100 } }, { multi: true }, inccallback);
+    function inccallback(err, num) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Kolkata",
+  }
+);
+fpIncrease.start();
 
 app.listen(port, () => console.log(`running on port ${port}`));
