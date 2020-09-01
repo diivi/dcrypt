@@ -23,22 +23,31 @@ router.post("/answer", verify, async (req, res) => {
   if (!question) {
     res.redirect("/questions");
     console.log("wrogn");
-  }
-
-  Team.updateOne(
-    { school: req.team.school },
-    { $push: { questions: req.body.title } },
-    { multi: true },
-    answercallback
-  );
-  function answercallback(err, num) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(num);
+  } else if (question) {
+    Team.updateOne(
+      { _id: req.team._id },
+      { $push: { questions: question.title } },
+      { multi: true },
+      answercallback
+    );
+    Team.updateOne(
+      { school: req.team.school },
+      { $inc: { fp: question.points } },
+      { multi: true },
+      pointscallback
+    );
+    function answercallback(err, num) {
+      if (err) {
+        console.log(err);
+      }
     }
+    function pointscallback(err, num) {
+      if (err) {
+        console.log(err);
+      }
+    }
+    res.redirect("/questions");
   }
-  res.redirect("/questions");
 });
 //TODO: Points add
 module.exports = router;
