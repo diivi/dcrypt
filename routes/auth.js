@@ -10,6 +10,7 @@ const axios = require("axios");
 var original = {};
 
 router.post("/register", contentSecurity, async (req, res) => {
+  console.log(req.body);
   var { error } = validateTeam(req.body);
   if (error) {
     original = error._original;
@@ -26,6 +27,8 @@ router.post("/register", contentSecurity, async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       school: req.body.school,
+      discord: req.body.discord,
+      name: req.body.name,
     };
   }
   response = await axios({
@@ -54,6 +57,8 @@ router.post("/register", contentSecurity, async (req, res) => {
     school: req.body.school,
     email: req.body.email,
     password: hashed,
+    discord: req.body.discord,
+    name: req.body.name,
   });
   try {
     const registered = await team.save();

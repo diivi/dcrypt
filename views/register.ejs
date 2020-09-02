@@ -25,7 +25,7 @@
     value="<% if (locals.original){ %><%- locals.original.password %><% } %>"
   />
   <%if (locals.errors) { %> <%if (locals.errors.includes("password")) { %>
-  <div class="error email">Password length must be atleast 8 characters</div>
+  <div class="error password">Password length must be atleast 8 characters</div>
   <% } %> <% } %>
 
   <label for="school">School</label>
@@ -36,8 +36,31 @@
     value="<% if (locals.original){ %><%- locals.original.school %><% } %>"
   />
   <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
-  <div class="error email">School name can not exceed 50 characters</div>
+  <div class="error school">School name can not exceed 30 characters</div>
   <% } %> <% } %>
+
+  <label for="name">Name</label>
+  <input
+    type="text"
+    name="name"
+    required
+    value="<% if (locals.original){ %><%- locals.original.name %><% } %>"
+  />
+  <%if (locals.errors) { %> <%if (locals.errors.includes("name")) { %>
+  <div class="error name">Max length for name can be 20 characters</div>
+  <% } %> <% } %>
+
+  <label for="name">Discord ID</label>
+  <input
+    type="text"
+    name="discord"
+    required
+    value="<% if (locals.original){ %><%- locals.original.discord %><% } %>"
+  />
+  <%if (locals.errors) { %> <%if (locals.errors.includes("discord")) { %>
+  <div class="error discord">Please enter a legitimate Discord ID</div>
+  <% } %> <% } %>
+
   <div
     class="g-recaptcha"
     data-sitekey="6LefzcYZAAAAANixHKD3wyLNsb8hutzHvzcDjbAH"

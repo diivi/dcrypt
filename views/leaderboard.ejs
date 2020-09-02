@@ -8,24 +8,24 @@
   </tr>
   <% }else{ %>
   <tr>
-    <th><%- element.school %></th>
+    <th><%- element.name %></th>
     <td><%- element.fp %></td>
     <td>
-      <span onclick="openModal('<%- element.school %>')">Attack</span>
+      <span onclick="openModal('<%- element.name %>')">Attack</span>
     </td>
   </tr>
   <% }}) %>
 </table>
 <% locals.allteams.forEach( function (element){ %> <% if
 ((element._id).toString()!==(locals.team._id).toString()) { %>
-<div id="<%= element.school %>" class="mymodal">
+<div id="<%= element.name %>" class="mymodal">
   <form action="/attack" method="POST" class="attack">
-    <p class="close" onclick="closeModal('<%= element.school %>')">X</p>
+    <p class="close" onclick="closeModal('<%= element.name %>')">X</p>
     <p>
-      Attacking <%= element.school %>
+      Attacking <%= element.name %>
       <input
         type="hidden"
-        value="<%= element.school %>"
+        value="<%= element.name %>"
         name="defender"
         class="defender"
         readonly

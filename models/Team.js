@@ -11,6 +11,15 @@ const teamSchema = new mongoose.Schema({
     required: true,
     lowercase: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
+  discord: {
+    type: String,
+    required: true,
+    lowercase: true,
+  },
   password: {
     type: String,
     required: true,
@@ -59,11 +68,10 @@ const teamSchema = new mongoose.Schema({
       default: 0,
     },
   },
-  dpVisible:{
+  dpVisible: {
     type: Boolean,
     default: false,
   },
-  
 });
 
 teamSchema.pre("updateOne", function (next) {

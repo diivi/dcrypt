@@ -3,9 +3,8 @@
 <% }else if(locals.success ==='false') { %>
 <h1 color="red">Attack Unsuccessful!</h1>
 <% } %>
-<h1><%- locals.team.school %></h1>
+<h1><%- locals.team.name %></h1>
 <form action="/logout" method="get">
   <button>Logout</button>
 </form>
-<a href="/leaderboard">Leaderboard</a>
 <%- include('footer'); -%>
