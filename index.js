@@ -3,8 +3,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 // var cron = require("node-cron");
-var helmet = require('helmet')
-
+var helmet = require("helmet");
 
 const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
@@ -35,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.json());
-app.use(helmet())
+app.use(helmet());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -47,6 +46,14 @@ app.use("/", attackRoute);
 app.use("/", makerRoute);
 app.use("/", admin);
 app.use("/", questionRoute);
+
+app.use(function (req, res, next) {
+  res.setHeader(
+    "Content-Security-Policy",
+    "script-src 'self' https://* 'unsafe-inline'"
+  );
+  return next();
+});
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { message: "hello " });

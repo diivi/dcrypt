@@ -1,5 +1,5 @@
 <%- include('header'); -%>
-<form action="/register" method="POST" class="regform">
+<form action="/register" method="POST" class="regform" id="regform">
   <h2>Register</h2>
   <% if (locals.alregistered) { %>
   <p class="error">Team Already Registered!</p>
@@ -38,6 +38,14 @@
   <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
   <div class="error email">School name can not exceed 50 characters</div>
   <% } %> <% } %>
+  <div
+    class="g-recaptcha"
+    data-sitekey="6LefzcYZAAAAANixHKD3wyLNsb8hutzHvzcDjbAH"
+    data-theme="dark"
+  ></div>
+  <% if (locals.galatRecaptcha) { %>
+  <p class="error">pls submit :( recaptcha</p>
+  <% } %>
   <input type="submit" value="Register" />
 </form>
 <%- include('footer'); -%>
