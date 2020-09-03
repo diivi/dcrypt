@@ -65,16 +65,43 @@ router.post("/register", contentSecurity, async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", contentSecurity, async (req, res) => {
   const team = await Team.findOne({ email: req.body.email });
-  if (!team) return res.render("login.ejs", { success: true, active: "login" });
+  if (!team) return res.render("login.ejs", { failure: true, active: "login" });
 
   const passCheck = await bcrypt.compare(req.body.password, team.password);
-  if (!passCheck) return res.status(400).send("Invalid Password");
+  if (!passCheck)
+    return res.render("login.ejs", { failure: true, active: "login" });
 
   const token = jwt.sign({ _id: team._id }, process.env.JWT);
   res.cookie("team", token, { httpOnly: true });
   res.redirect("/dashboard");
+});
+
+router.post("/passchange", contentSecurity, async (req, res) => {
+  const team = await Team.findOne({ email: req.body.email });
+  if (!team) return res.render("login.ejs", { failure: true, active: "login" });
+
+  const passCheck = await bcrypt.compare(req.body.old, team.password);
+  if (!passCheck)
+    return res.render("login.ejs", { failure: true, active: "login" });
+
+  const salt = await bcrypt.genSalt(10);
+  const hashed = await bcrypt.hash(req.body.new, salt);
+
+  Team.updateOne(
+    { email: req.body.email },
+    { $set: { password: hashed } },
+    { multi: true },
+    passcallback
+  );
+  function passcallback(err, num) {
+    if (err) {
+      console.log(err);
+    } else {
+      return res.render("login.ejs", { passed: true, active: "login" });
+    }
+  }
 });
 
 router.get("/logout", verify, (req, res) => {

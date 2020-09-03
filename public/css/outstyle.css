@@ -59,14 +59,14 @@ input:not([type="submit"]) {
 }
 input[type="submit"] {
   margin-left: 100%;
-  transform: translateX(-100%);
+  transform: translateX(-90%);
   border: none;
   outline: none;
   color: white;
   font-family: Inter;
   font-size: 18px;
   background-color: #9d1111;
-  padding: 18px 32px;
+  padding: 12px 40px;
   border-radius: 14px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -89,12 +89,13 @@ form h1 {
   font-size: 52px;
   margin: 0px;
   margin-top: 20px;
-  line-height: 64px;
   color: #ffffff;
+  margin-left: -20px;
+  margin-bottom: 0px;
 }
 .error {
   color: red;
-  margin-left: 10px;
+  margin-left: -20px;
 }
 @media only screen and (max-width: 1400px) {
   .g-recaptcha {
