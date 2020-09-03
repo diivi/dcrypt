@@ -92,6 +92,7 @@ form h1 {
   color: #ffffff;
   margin-left: -20px;
   margin-bottom: 0px;
+  line-height: 5vw;
 }
 .error {
   color: red;
@@ -215,6 +216,12 @@ h1 {
   line-height: 22px;
   color: #ffffff;
   cursor: pointer;
+}
+table {
+  display: block;
+  position: absolute;
+  color: white;
+  top: 10vh;
 }
 @media only screen and (max-width: 1000px) {
   .navlogo {

@@ -1,0 +1,14 @@
+<%- include('header'); -%>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Flag Points</th>
+  </tr>
+  <% locals.allteams.forEach( function (element){ %>
+  <tr>
+    <th><%- element.name %></th>
+    <td><%- element.fp %></td>
+  </tr>
+  <% }) %>
+</table>
+<%- include('footer'); -%>

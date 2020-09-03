@@ -14,4 +14,15 @@ router.get("/leaderboard", contentSecurity, verify, (req, res) => {
     });
 });
 
+router.get("/leaderboardout", contentSecurity, (req, res) => {
+  Team.find({})
+    .sort({ fp: "desc" })
+    .exec(function (err, docs) {
+      if (err) {
+        console.log(err);
+      }
+      res.render("leaders.ejs", { active: "leaderboard", allteams: docs });
+    });
+});
+
 module.exports = router;
