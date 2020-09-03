@@ -1,13 +1,19 @@
 <%- include('header'); -%>
+<div class="container">
+  <div class="ib-child">
+    <img src="/hacker.png" alt="" />
+  </div>
+    <div class="ib-child">
 <form action="/login" method="post" class="loginform">
-  <h2>Login</h2>
-  <label for="email">Email</label>
-  <input type="email" name="email" required>
-  <div class="error email">
-
-  <label for="password">Password</label>
-  <input type="password" name="password" required>
-  <div class="error password"> 
-  <button>Login</button>
+  <h1>Login</h1>
+  <input type="email" name="email" required placeholder="Email">
+  <input type="password" name="password" required placeholder="Password">
+  <% if (locals.success) { %>
+    <p class="error">Could not find a user with the given credentials.  </p>
+  <% } %>
+  <div class="error"> 
+  <input type="submit" value="Login">
 </form>
+</div>
+</div>
 <%- include('footer'); -%>

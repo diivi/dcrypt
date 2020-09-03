@@ -2,7 +2,6 @@ const router = require("express").Router();
 const Team = require("../models/Team");
 const verify = require("../middleware/tokenVerification");
 const validateTeam = require("../middleware/teamValidate");
-const loginValidate = require("../middleware/loginValidate");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const contentSecurity = require("../middleware/contentSecurity");
@@ -10,7 +9,6 @@ const axios = require("axios");
 var original = {};
 
 router.post("/register", contentSecurity, async (req, res) => {
-  console.log(req.body);
   var { error } = validateTeam(req.body);
   if (error) {
     original = error._original;
@@ -40,7 +38,6 @@ router.post("/register", contentSecurity, async (req, res) => {
     },
   });
   var recap = response.data.success;
-  console.log(recap);
   if (!recap) {
     return res.render("register.ejs", {
       galatRecaptcha: true,
@@ -69,11 +66,8 @@ router.post("/register", contentSecurity, async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { error } = loginValidate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
-
   const team = await Team.findOne({ email: req.body.email });
-  if (!team) return res.status(400).send("Team not registered");
+  if (!team) return res.render("login.ejs", { success: true, active: "login" });
 
   const passCheck = await bcrypt.compare(req.body.password, team.password);
   if (!passCheck) return res.status(400).send("Invalid Password");

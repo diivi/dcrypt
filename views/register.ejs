@@ -1,74 +1,85 @@
 <%- include('header'); -%>
-<form action="/register" method="POST" class="regform" id="regform">
-  <h2>Register</h2>
-  <% if (locals.alregistered) { %>
-  <p class="error">Team Already Registered!</p>
-  <% } %> <% if (locals.registered) { %>
-  <p style="color: green">Team Registered!</p>
-  <% } %>
-  <label for="email">Email</label>
-  <input
-    type="email"
-    name="email"
-    required
-    value="<% if (locals.original){ %><%- locals.original.email %><% } %>"
-  />
-  <%if (locals.errors) { %> <%if (locals.errors.includes("email")) { %>
-  <div class="error email">Please enter a valid email address</div>
-  <% } %> <% } %>
+<div class="container">
+  <div class="ib-child">
+    <img src="/hacker.png" alt="" />
+  </div>
+  <div class="ib-child">
+    <form action="/register" method="POST" class="regform" id="regform">
+      <h1>Register</h1>
+      <% if (locals.alregistered) { %>
+      <p class="error">You are Already Registered!</p>
+      <% } %> <% if (locals.registered) { %>
+      <p style="color: green">Successfully Registered!</p>
+      <% } %>
+      <input
+        type="email"
+        name="email"
+        required
+        value="<% if (locals.original){ %><%- locals.original.email %><% } %>"
+        placeholder="Email"
+      />
+      <%if (locals.errors) { %> <%if (locals.errors.includes("email")) { %>
+      <div class="error email">Please enter a valid email address</div>
+      <% } %> <% } %>
 
-  <label for="password">Password</label>
-  <input
-    type="text"
-    name="password"
-    required
-    value="<% if (locals.original){ %><%- locals.original.password %><% } %>"
-  />
-  <%if (locals.errors) { %> <%if (locals.errors.includes("password")) { %>
-  <div class="error password">Password length must be atleast 8 characters</div>
-  <% } %> <% } %>
+      <input
+        type="password"
+        name="password"
+        required
+        value="<% if (locals.original){ %><%- locals.original.password %><% } %>"
+        placeholder="Password"
+      />
+      <%if (locals.errors) { %> <%if (locals.errors.includes("password")) { %>
+      <div class="error password">
+        Password length must be atleast 8 characters
+      </div>
+      <% } %> <% } %>
 
-  <label for="school">School</label>
-  <input
-    type="text"
-    name="school"
-    required
-    value="<% if (locals.original){ %><%- locals.original.school %><% } %>"
-  />
-  <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
-  <div class="error school">School name can not exceed 30 characters</div>
-  <% } %> <% } %>
+      <input
+        type="text"
+        name="school"
+        required
+        value="<% if (locals.original){ %><%- locals.original.school %><% } %>"
+        placeholder="School Name"
+      />
+      <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
+      <div class="error school">School name can not exceed 30 characters</div>
+      <% } %> <% } %>
 
-  <label for="name">Name</label>
-  <input
-    type="text"
-    name="name"
-    required
-    value="<% if (locals.original){ %><%- locals.original.name %><% } %>"
-  />
-  <%if (locals.errors) { %> <%if (locals.errors.includes("name")) { %>
-  <div class="error name">Max length for name can be 20 characters</div>
-  <% } %> <% } %>
+      <input
+        type="text"
+        name="name"
+        required
+        value="<% if (locals.original){ %><%- locals.original.name %><% } %>"
+        placeholder="Name"
+      />
+      <%if (locals.errors) { %> <%if (locals.errors.includes("name")) { %>
+      <div class="error name">Max length for name can be 20 characters</div>
+      <% } %> <% } %>
 
-  <label for="name">Discord ID</label>
-  <input
-    type="text"
-    name="discord"
-    required
-    value="<% if (locals.original){ %><%- locals.original.discord %><% } %>"
-  />
-  <%if (locals.errors) { %> <%if (locals.errors.includes("discord")) { %>
-  <div class="error discord">Please enter a legitimate Discord ID</div>
-  <% } %> <% } %>
-
-  <div
-    class="g-recaptcha"
-    data-sitekey="6LefzcYZAAAAANixHKD3wyLNsb8hutzHvzcDjbAH"
-    data-theme="dark"
-  ></div>
-  <% if (locals.galatRecaptcha) { %>
-  <p class="error">pls submit :( recaptcha</p>
-  <% } %>
-  <input type="submit" value="Register" />
-</form>
+      <input
+        type="text"
+        name="discord"
+        required
+        value="<% if (locals.original){ %><%- locals.original.discord %><% } %>"
+        placeholder="Discord ID"
+      />
+      <%if (locals.errors) { %> <%if (locals.errors.includes("discord")) { %>
+      <div class="error discord">Please enter a legitimate Discord ID</div>
+      <% } %> <% } %>
+      <div style="text-align: center">
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LefzcYZAAAAANixHKD3wyLNsb8hutzHvzcDjbAH"
+          data-theme="dark"
+          style="display: inline-block"
+        ></div>
+      </div>
+      <% if (locals.galatRecaptcha) { %>
+      <p class="error">pls submit :( recaptcha</p>
+      <% } %>
+      <input type="submit" value="Register" />
+    </form>
+  </div>
+</div>
 <%- include('footer'); -%>
