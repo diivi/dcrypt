@@ -114,12 +114,16 @@ form h1 {
     width: 140%;
     margin-left: -20%;
   }
+  input[type="submit"] {
+    padding: 6px 20px;
+  }
 }
 nav {
   height: 10vh;
   width: 100%;
   background-color: #151515;
-  position: relative;
+  position: absolute;
+  z-index: 1;
 }
 .navlogo {
   height: 50%;

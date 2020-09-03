@@ -5,10 +5,11 @@ const Team = require("../models/Team");
 router.post("/attack", verify, async (req, res) => {
   const totalAttack =
     req.body.soldier * 100 + req.body.aircraft * 300 + req.body.tank * 400;
-  const defender = await Team.findOne({ school: req.body.defender });
+  const defender = await Team.findOne({ name: req.body.defender });
+  //*Success
   if (totalAttack - defender.dp >= 50) {
     Team.updateOne(
-      { school: defender.school },
+      { email: defender.email },
       {
         $set: { dp: defender.dp - totalAttack, fp: parseInt(defender.fp / 2) },
       },
@@ -21,7 +22,7 @@ router.post("/attack", verify, async (req, res) => {
       }
     }
     Team.updateOne(
-      { school: req.team.school },
+      { email: req.team.email },
       {
         $inc: {
           "troops.soldiers": -req.body.soldier,
@@ -38,8 +39,9 @@ router.post("/attack", verify, async (req, res) => {
     }
     res.redirect("/dashboard/?success=true");
   } else {
+    //!Failure
     Team.updateOne(
-      { school: req.team.school },
+      { email: req.team.email },
       { $inc: { "troops.soldiers": -req.body.soldier } },
       { multi: true },
       attackcallback
@@ -53,7 +55,7 @@ router.post("/attack", verify, async (req, res) => {
     Team.updateOne(
       { school: defender.school },
       {
-        $set: { dp: defender.dp - totalAttack},
+        $set: { dp: defender.dp - totalAttack },
       },
       { multi: true },
       callback

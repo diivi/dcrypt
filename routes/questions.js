@@ -2,8 +2,9 @@ const router = require("express").Router();
 const verify = require("../middleware/tokenVerification");
 const Questions = require("../models/Questions");
 const Team = require("../models/Team");
+const contentSecurity = require("../middleware/contentSecurity");
 
-router.get("/questions", verify, (req, res) => {
+router.get("/questions", contentSecurity, verify, (req, res) => {
   Questions.find({})
     .sort({ qnum: "asc" })
     .exec(function (err, docs) {
@@ -31,7 +32,7 @@ router.post("/answer", verify, async (req, res) => {
       answercallback
     );
     Team.updateOne(
-      { school: req.team.school },
+      { email: req.team.email },
       { $inc: { bp: question.points, fp: 500 } },
       { multi: true },
       pointscallback
