@@ -172,32 +172,37 @@ ul li a {
   color: white;
 }
 .info-header {
-  padding: 5% 5%;
+  padding: 0% 5%;
+  width: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
 }
 h1 {
-  font-family: fcsq;
+  font-family: fcsq, "sans-serif";
   font-style: normal;
   font-weight: 500;
-  font-size: 120px;
-  line-height: 97px;
-  margin: 5% 0%;
+  font-size: 140px;
+  line-height: 140px;
   color: #ff1100;
+  margin: 0% 0% 5% 0%;
 }
 .info {
-  width: 523px;
+  width: 100%;
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
+  margin: 5% 0%;
 }
 .mainbtns {
-  margin-top: 5%;
+  margin-top: 2%;
   display: inline-block;
   width: 146px;
   height: 46px;
   border: none;
   outline: none;
-  background: #b12323;
+  background: #e41406;
   border-radius: 8px;
   font-family: Inter;
   font-style: normal;
@@ -285,5 +290,14 @@ h1 {
     margin: 5px 10%;
     border-radius: 12px;
     background-color: red;
+  }
+  .info-header {
+    width: 100%;
+  }
+  h1 {
+    font-size: 100px;
+  }
+  .mainbtns {
+    width: 120px;
   }
 }
