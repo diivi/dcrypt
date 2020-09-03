@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @font-face {
   font-family: fcsq;
-  src: url(fcsq.ttf);
+  src: url(../fonts/fcsq.woff2);
   font-weight: bold;
 }
 * {
@@ -43,16 +43,17 @@ body {
 input:not([type="submit"]) {
   display: block;
   margin: 20px 0px;
+  margin-left: -20px;
   border: none;
   outline: none;
-  padding: 12px 18px;
+  padding: 8px 10px;
   background: #1f1f1f;
-  border-radius: 14px;
+  border-radius: 10px;
   font-family: Inter;
   font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  width: 110%;
   color: white;
   opacity: 0.7;
 }
@@ -68,7 +69,7 @@ input[type="submit"] {
   padding: 18px 32px;
   border-radius: 14px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 img {
@@ -78,7 +79,7 @@ form {
   background-color: #242323;
   width: 60%;
   margin: 0 auto;
-  padding: 20px 60px;
+  padding: 0px 60px;
   border-radius: 18px;
 }
 form h1 {
@@ -86,7 +87,9 @@ form h1 {
   font-style: normal;
   font-weight: bold;
   font-size: 52px;
-
+  margin: 0px;
+  margin-top: 20px;
+  line-height: 64px;
   color: #ffffff;
 }
 .error {
@@ -133,7 +136,7 @@ li {
   float: right;
   margin-top: 4vh;
   transform: translateY(-50%);
-  font-size: 24px;
+  font-size: 16px;
 }
 li:not(:last-child) {
   margin-left: 60px;
@@ -200,13 +203,8 @@ h1 {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  transition: 0.2s linear;
   color: #ffffff;
   cursor: pointer;
-}
-.mainbtns:hover {
-  box-shadow: 0 0.5em 0.5em -0.4em rgba(255, 255, 255, 0.3);
-  transform: translateY(-0.25em);
 }
 @media only screen and (max-width: 1000px) {
   .navlogo {
@@ -231,6 +229,7 @@ h1 {
   }
   img {
     width: 100%;
+    height: 50vh;
   }
   input:not([type="submit"]) {
     width: 100%;
