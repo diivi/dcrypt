@@ -16,6 +16,7 @@ const makerRoute = require("./controllers/questionMaker");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const contentSecurity = require("./middleware/contentSecurity");
 
 const port = 5000 || process.env.PORT;
 const Team = require("./models/Team");
@@ -55,7 +56,7 @@ app.use(function (req, res, next) {
   return next();
 });
 
-app.get("/", (req, res) => {
+app.get("/", contentSecurity, (req, res) => {
   res.render("index.ejs", { active: "home" });
 });
 

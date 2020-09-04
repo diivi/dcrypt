@@ -1,13 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@font-face {
+  font-family: fcsq;
+  src: url(../fonts/fcsq.woff2);
+  font-weight: bold;
+}
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+html,
 body {
-  background-color: black;
-  color: white;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1f1f1f;
+  font-family: Inter, "sans-serif";
+  overflow-x: hidden;
 }
 input[type="number"] {
   -webkit-appearance: textfield;
@@ -100,32 +113,332 @@ span {
   background-color: red;
   cursor: pointer;
 }
-h1 {
-  color: #f10000;
-  font-family: "Nexa";
-  font-weight: 300;
+
+nav {
+  height: 10vh;
+  width: 100%;
+  background-color: #151515;
+  position: absolute;
+  z-index: 1;
+}
+.navlogo {
+  height: 50%;
+  top: 25%;
+  left: 2%;
+  width: auto;
+  display: inline-block;
+  position: absolute;
+}
+ul {
+  list-style-type: none;
+  margin-right: 60px;
+}
+li {
+  float: right;
+  margin-top: 5vh;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+li:not(:last-child) {
+  margin-left: 60px;
+}
+.active:after {
+  content: "";
+  position: absolute;
+  display: block;
+  height: 3px;
+  width: 80%;
+  margin: 5px 10%;
+  border-radius: 12px;
+  background-color: red;
+}
+li:after {
+  width: 0%;
+  content: "";
+  position: absolute;
+  display: block;
+  height: 3px;
+  margin: 5px 10%;
+  border-radius: 12px;
+  background-color: #f10000;
+  transition: width 0.2s ease-in-out;
+}
+li:hover:after {
+  width: 80%;
+}
+
+ul li a {
+  text-decoration: none;
+  color: white;
+}
+.lb {
+  font-family: Inter;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 77px;
+  margin: 0px 0px 2vw 0px;
+  color: #ffffff;
+}
+.tablecontain {
+  padding: 2% 5%;
+  margin-top: 10vh;
+}
+tr {
+  text-align: center;
+}
+th {
+  padding: 24px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+  background-color: #101010;
+}
+td {
+  padding: 24px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+}
+table {
+  color: white;
+  width: 100%;
+  border: none;
+  border-spacing: 0px;
+}
+#questionz {
+  padding: 10vh 2.5%;
+}
+.heading {
+  margin: 5vh 0px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 77px;
+
+  color: #ffffff;
 }
 
 .question {
-  width: 300px;
-  height: 300px;
+  width: 20%;
+  height: 200px;
   background: rgb(39, 38, 38);
   display: inline-block;
-  margin: 0px 20px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
 }
-.question p {
-  color: white;
+.question:not(:first-child) {
+  margin-left: 5%;
+}
+.qcontent {
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  width: 100%;
+  color: #ffffff;
+}
+.qcontent p {
+  margin: 20px 0px;
+  width: 80%;
+  margin-left: 10%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .qmodal {
   display: none;
-  height: 100vh;
-  width: 100vw;
-  opacity: 0.9;
+  min-height: 33vh;
+  width: 50vw;
   position: absolute;
   z-index: 1;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  border-radius: 18px;
+  transform: translate(-50%, -50%);
   text-align: center;
-  background-color: gray;
+  background-color: #191919;
+  color: #fff;
+}
+.qmodal form {
+}
+.qinfo {
+  margin: 0px 10% 20px 10%;
+  width: 80%;
+  position: relative;
+  height: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+}
+.qinfo p {
+  margin: 30px 0px;
+}
+.qhead {
+  margin: 20px 0px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 58px;
+
+  color: #ffffff;
+}
+.qtext {
+  margin: 20px 0px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  width: 100%;
+  line-height: 32px;
+  position: relative;
+  text-align: left;
+  color: #ffffff;
+}
+.attacher {
+  position: relative;
+  margin: 0px 0px 30px 0px;
+  float: left;
+  clear: both;
+  border: none;
+  outline: none;
+  background: #4f4f4f;
+  border-radius: 6px;
+  padding: 0.6vw 1.2vw;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 29px;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.sidebyside {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.sidebyside button {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background: #9d1111;
+  border-radius: 14px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 29px;
+  padding: 0.6vw 1.2vw;
+  color: #ffffff;
+  margin-left: -10px;
+  z-index: 1;
+  cursor: pointer;
+}
+.sidebyside input[type="text"] {
+  flex-grow: 3;
+  background: #262626;
+  border-radius: 14px 0px 0px 14px;
+  outline: none;
+  border: none;
+  font-size: 24px;
+  padding: 10px 10px;
+  color: white;
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 1000px) {
+  .lb {
+    font-size: 32px;
+  }
+  .tablecontain {
+    padding: 2% 2%;
+    margin-top: 10vh;
+  }
+  tr {
+    text-align: center;
+  }
+  th {
+    padding: 8px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    background-color: #101010;
+  }
+  td {
+    padding: 8px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100px;
+  }
+  table {
+    color: white;
+    width: 100%;
+    border: none;
+    border-spacing: 0px;
+  }
+  .navlogo {
+    display: none;
+  }
+  nav {
+    display: grid;
+    place-items: center;
+  }
+  ul {
+    list-style-type: none;
+    margin-right: 10px;
+  }
+  li {
+    float: right;
+    margin-top: 4vh;
+    transform: translateY(-100%);
+    font-size: 12px;
+  }
+  li:not(:last-child) {
+    margin-left: 25px;
+  }
+  .active:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 4px;
+    width: 80%;
+    margin: 5px 10%;
+    border-radius: 12px;
+    background-color: red;
+  }
 }

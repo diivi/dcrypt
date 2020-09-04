@@ -1,4 +1,3 @@
-
 <form action="/questionMaker" method="POST" class="loginform">
   <% if (locals.registered) { %>
   <p style="color: green">Question Created!</p>
@@ -14,6 +13,9 @@
 
   <label for="ans">Answer</label>
   <input type="text" name="ans" required />
+
+  <label for="points">Attachment Name (leave blank agar nahi hai)</label>
+  <input style="border: 1px solid black" type="text" name="attachment" />
 
   <label for="points">Points</label>
   <input style="border: 1px solid black" type="number" name="points" required />

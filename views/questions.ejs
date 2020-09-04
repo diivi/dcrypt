@@ -1,45 +1,61 @@
 <%- include('headerin'); -%>
-<div>
-  <% locals.questions.forEach( function (element){ %>
-  <div
-    class="question"
-    style="background:<% if (locals.team.questions.includes(element.title)) { %>rgb(120, 120, 120)<% } %>"
-  >
-    <h1><%- element.points %></h1>
-    <p><%- element.title %></p>
-
-    <button <% if (locals.team.questions.includes(element.title)) { %>
-      disabled <% } %> onclick="openModal('<%- element.title %>')">Answer
-    </button>
-  </div>
-  <% }) %> <% locals.questions.forEach( function (element){ %> <% if
-  (!locals.team.questions.includes(element.title)) { %>
-  <div id="<%- element.title %>" class="qmodal">
-    <form action="/answer" method="POST">
-      <p>
-        <input
-          type="hidden"
-          value="<%= element.title%>"
-          name="title"
-          class="defender"
-          readonly
-        />
-      </p>
-      <p class="close" onclick="closeModal('<%= element.title %>')">X</p>
-      <p><%- element.question %></p>
-      <input type="text" name="ans" />
-      <button>Submit</button>
-    </form>
+<div id="questionz">
+  <h1 class="heading">Questions</h1>
+  <div class="questions">
+    <% locals.questions.forEach( function (element){ %>
+    <div <% if (locals.team.questions.includes(element.title)) { %>
+      style="background:#9D1111;cursor:default" <% }else{ %>
+      onclick="openModal('<%- element.title %>')"<% }%> class="question" >
+      <div class="qcontent">
+        <p><%- element.title %></p>
+        <p><%- element.points %></p>
+      </div>
+    </div>
+    <% }) %> <% locals.questions.forEach( function (element){ %> <% if
+    (!locals.team.questions.includes(element.title)) { %>
+    <div id="<%- element.title %>" class="qmodal">
+      <form action="/answer" method="POST">
+        <p class="close" onclick="closeModal('<%= element.title %>')">
+          &#10060;
+        </p>
+        <div class="qinfo">
+          <p>
+            <input
+              type="hidden"
+              value="<%= element.title%>"
+              name="title"
+              class="defender"
+              readonly
+            />
+          </p>
+          <p class="qhead"><%- element.title %></p>
+          <p class="qtext"><%- element.question %></p>
+          <% if (element.attachment!=""){ %>
+          <a
+            class="attacher"
+            href="/questionfiles/<%-(element.attachment)%>"
+            download="<%- element.attachment %>"
+            target="_blank"
+          >
+            <%- element.attachment %>
+          </a>
+          <% } %>
+          <div class="sidebyside">
+            <input type="text" name="ans" />
+            <button>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
   <% } }) %>
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+  </script>
+  <%- include('footer'); -%>
 </div>
-<script>
-  function openModal(id) {
-    console.log(id);
-    document.getElementById(id).style.display = "block";
-  }
-  function closeModal(id) {
-    document.getElementById(id).style.display = "none";
-  }
-</script>
-<%- include('footer'); -%>

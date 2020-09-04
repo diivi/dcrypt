@@ -21,6 +21,10 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  attachment: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("Question", questionSchema);

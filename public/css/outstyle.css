@@ -42,7 +42,7 @@ body {
 }
 input:not([type="submit"]) {
   display: block;
-  margin: 20px 0px;
+  margin: 15px 0px;
   margin-left: -20px;
   border: none;
   outline: none;
@@ -57,20 +57,40 @@ input:not([type="submit"]) {
   color: white;
   opacity: 0.7;
 }
-input[type="submit"] {
-  margin-left: 100%;
-  transform: translateX(-90%);
+input[type="submit"]:not(.registrr) {
+  float: right;
   border: none;
   outline: none;
   color: white;
   font-family: Inter;
   font-size: 18px;
   background-color: #9d1111;
-  padding: 12px 40px;
-  border-radius: 14px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  padding: 0.8vw 1.4vw;
+  border-radius: 10px;
   cursor: pointer;
+}
+.g-recaptcha {
+  margin: 0 auto;
+}
+.pass {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  font-size: 1vw;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.bottomer {
+  margin-left: 0%;
+  width: 100%;
+  display: inline-block;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: Inter;
+  font-size: 18px;
+  position: relative;
+  margin: 10px 0px;
 }
 img {
   width: 100%;
@@ -78,10 +98,14 @@ img {
 form {
   background-color: #242323;
   width: 60%;
-  margin: 0 auto;
-  padding: 0px 60px;
+  margin: 0% auto;
+  padding: 5px 60px;
   border-radius: 18px;
 }
+.regform {
+  margin-top: 10%;
+}
+
 form h1 {
   font-family: Inter, "sans-serif";
   font-style: normal;
@@ -115,8 +139,9 @@ form h1 {
     width: 140%;
     margin-left: -20%;
   }
-  input[type="submit"] {
-    padding: 6px 20px;
+  .bottomer {
+    width: 140%;
+    margin-left: -20%;
   }
 }
 nav {
@@ -217,13 +242,108 @@ h1 {
   color: #ffffff;
   cursor: pointer;
 }
+.lb {
+  font-family: Inter;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 77px;
+  margin: 0px 0px 2vw 0px;
+  color: #ffffff;
+}
+.tablecontain {
+  padding: 2% 5%;
+  margin-top: 10vh;
+}
+tr {
+  text-align: center;
+}
+th {
+  padding: 24px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+  background-color: #101010;
+}
+td {
+  padding: 24px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+}
 table {
-  display: block;
-  position: absolute;
   color: white;
-  top: 10vh;
+  width: 100%;
+  border: none;
+  border-spacing: 0px;
+}
+.registrr {
+  margin-left: 100%;
+  transform: translateX(-100%);
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  background-color: #9d1111;
+  padding: 12px 40px;
+  border-radius: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 1000px) {
+  .lb {
+    font-size: 32px;
+  }
+  .tablecontain {
+    padding: 2% 2%;
+    margin-top: 10vh;
+  }
+  tr {
+    text-align: center;
+  }
+  th {
+    padding: 8px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    background-color: #101010;
+  }
+  td {
+    padding: 8px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100px;
+  }
+  table {
+    color: white;
+    width: 100%;
+    border: none;
+    border-spacing: 0px;
+  }
+  .bottomer {
+    width: 100%;
+    margin-left: 0%;
+  }
   .navlogo {
     display: none;
   }
@@ -239,7 +359,10 @@ table {
     margin-left: 0px;
   }
   input[type="submit"] {
-    transform: translateX(-100%);
+    padding: 10px 20px !important;
+  }
+  .pass {
+    font-size: 4vw;
   }
   .container > .ib-child {
     display: block;
@@ -262,9 +385,12 @@ table {
   }
   form h1 {
     font-size: 42px;
+    line-height: 64px;
+    margin-top: 0px;
+    text-align: center;
   }
   form {
-    background-color: #303030;
+    background-color: #242323;
     width: 100%;
     margin: 10% auto;
     padding: 10px 15px;

@@ -10,7 +10,7 @@ router.get("/leaderboard", contentSecurity, verify, (req, res) => {
       if (err) {
         console.log(err);
       }
-      res.render("leaderboard.ejs", { team: req.team, allteams: docs });
+      res.render("leaderboard.ejs", { team: req.team, allteams: docs,active:'leaderboard' });
     });
 });
 

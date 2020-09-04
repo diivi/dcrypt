@@ -1,14 +1,29 @@
 <%- include('headerin'); -%>
+<div class="tablecontain">
+  <h1 class="lb">Leaderboard</h1>
 <table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Flag Points</th>
+    <th></th>
+  </tr>
   <% locals.allteams.forEach( function (element){ %> <% if
   ((element._id).toString()===(locals.team._id).toString()) { %>
-  <tr>
-    <th>You</th>
+  <tr <% if (allteams.indexOf(element)%2!=0) { %>
+      style="background-color:#3C3838" <% }else{ %>
+      style="background-color:#191919" <% }%>>
+    <td><%- allteams.indexOf(element)+1 %></td>
+    <td>You</td>
     <td><%- element.fp %></td>
+    <td></td>
   </tr>
   <% }else{ %>
-  <tr>
-    <th><%- element.name %></th>
+  <tr <% if (allteams.indexOf(element)%2!=0) { %>
+      style="background-color:#3C3838" <% }else{ %>
+      style="background-color:#191919" <% }%> >
+    <td><%- allteams.indexOf(element)+1 %></td>
+    <td><%- element.name %></th>
     <td><%- element.fp %></td>
     <td>
       <span onclick="openModal('<%- element.name %>')">Attack</span>
@@ -16,6 +31,7 @@
   </tr>
   <% }}) %>
 </table>
+</div>
 <% locals.allteams.forEach( function (element){ %> <% if
 ((element._id).toString()!==(locals.team._id).toString()) { %>
 <div id="<%= element.name %>" class="mymodal">

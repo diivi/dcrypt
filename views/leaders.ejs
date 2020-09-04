@@ -1,14 +1,21 @@
 <%- include('header'); -%>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Flag Points</th>
-  </tr>
-  <% locals.allteams.forEach( function (element){ %>
-  <tr>
-    <th><%- element.name %></th>
-    <td><%- element.fp %></td>
-  </tr>
-  <% }) %>
-</table>
+<div class="tablecontain">
+  <h1 class="lb">Leaderboard</h1>
+  <table>
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Flag Points</th>
+    </tr>
+    <% locals.allteams.forEach( function (element){ %>
+    <tr <% if (allteams.indexOf(element)%2!=0) { %>
+      style="background-color:#3C3838" <% }else{ %>
+      style="background-color:#191919" <% }%> >
+      <td><%- allteams.indexOf(element) +1%></td>
+      <td><%- element.name %></th>
+      <td><%- element.fp %></td>
+    </tr>
+    <% }) %>
+  </table>
+</div>
 <%- include('footer'); -%>

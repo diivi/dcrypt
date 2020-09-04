@@ -3,7 +3,7 @@ const verify = require("../middleware/tokenVerification");
 const verifynCrypt = require("../middleware/ncryptVerification");
 const Question = require("../models/Questions");
 
-router.get("/questionMaker", verify, (req, res) => {
+router.get("/questionMaker", verifynCrypt, (req, res) => {
   res.render("makeQuestion.ejs");
 });
 router.post("/questionMaker", verifynCrypt, async (req, res) => {
@@ -12,7 +12,8 @@ router.post("/questionMaker", verifynCrypt, async (req, res) => {
     question: req.body.ques,
     answer: req.body.ans,
     points: req.body.points,
-    title: req.body.title
+    title: req.body.title,
+    attachment: req.body.attachment,
   });
   try {
     const made = await question.save();

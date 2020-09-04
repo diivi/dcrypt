@@ -11,7 +11,11 @@ router.get("/questions", contentSecurity, verify, (req, res) => {
       if (err) {
         console.log(err);
       }
-      res.render("questions.ejs", { team: req.team, questions: docs });
+      res.render("questions.ejs", {
+        team: req.team,
+        questions: docs,
+        active: "questions",
+      });
     });
 });
 router.post("/answer", verify, async (req, res) => {
@@ -23,7 +27,6 @@ router.post("/answer", verify, async (req, res) => {
   });
   if (!question) {
     res.redirect("/questions");
-    console.log("wrogn");
   } else if (question) {
     Team.updateOne(
       { _id: req.team._id },

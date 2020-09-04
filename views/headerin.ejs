@@ -3,19 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dCrypt</title>
+    <meta name="description" content="dCrypt 2020 promises to be a cryptic hunt in a league of its own. We have developed a new platform that combines the classic Capture the Flag formula with a fun, engaging and strategic wargame.">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>dCrypt | nCrypt's Cryptic Hunt 2020</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+      <link rel="icon" href="/images/n.png">
+ 
   </head>
+
   <body>
-    <a href="/leaderboard">Leaderboard</a>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Signout</a>
-    <a href="/questions">Questions</a>
-  </body>
-</html>
+    <nav> 
+      <img src="images/logo.png" class='navlogo'>
+      <ul>
+        <li>
+          <a href="/dashboard" <% if (locals.active=='dashboard') { %>class="active"<% } %>>Dashboard</a>
+        </li>
+        <li>
+          <a href="/leaderboard"<% if (locals.active=='leaderboard') { %>class="active"<% } %> >Leaderboard</a>
+        </li>
+
+        <li>
+          <a href="/shop" <% if (locals.active=='shop') { %>class="active"<% } %> >Shop</a>
+        </li>
+        <li>
+          <a href="/questions" <% if (locals.active=='questions') { %>class="active" <% } %>>Questions</a>
+        </li>
+      </ul>
+    </nav>
