@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap");
 @font-face {
   font-family: fcsq;
   src: url(../fonts/fcsq.woff2);
@@ -19,7 +19,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #1f1f1f;
-  font-family: Inter, "sans-serif";
+  font-family: "Red Hat Display", "sans-serif";
   overflow-x: hidden;
 }
 
@@ -81,9 +81,9 @@ ul li a {
   color: white;
 }
 .lb {
-  font-family: Inter;
+  font-family: "Red Hat Display";
 
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 64px;
@@ -100,7 +100,7 @@ tr {
 }
 th {
   padding: 24px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -110,7 +110,7 @@ th {
 }
 td {
   padding: 24px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -129,7 +129,7 @@ table {
 .heading {
   margin: 5vh 0px;
 
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 64px;
@@ -228,7 +228,7 @@ table {
   background: #4f4f4f;
   border-radius: 6px;
   padding: 0.6vw 1.2vw;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
@@ -257,7 +257,7 @@ table {
   outline: none;
   background: #9d1111;
   border-radius: 14px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -284,7 +284,7 @@ table {
   outline: none;
   background: #9d1111;
   border-radius: 14px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -362,7 +362,7 @@ input[type="number"]:focus {
   margin-bottom: 20px;
 }
 .number-input input[type="number"] {
-  font-family: Inter;
+  font-family: "Red Hat Display";
   max-width: 5rem;
   padding: 0.5rem;
   font-size: 2rem;
@@ -386,7 +386,7 @@ input[type="number"]:focus {
   padding: 5vh 5%;
 }
 .mymodal > h1 {
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 64px;
@@ -407,7 +407,7 @@ input[type="number"]:focus {
 .deploy h1 {
   text-align: center;
 
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -432,7 +432,7 @@ input[type="number"]:focus {
   outline: none;
   background: #9d1111;
   border-radius: 14px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -455,7 +455,7 @@ input[type="number"]:focus {
 .inventroop p + p {
   margin-top: 20px;
 
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -465,7 +465,7 @@ input[type="number"]:focus {
   color: #ffffff;
 }
 .inventroop p {
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 28px;
@@ -575,7 +575,7 @@ span {
   }
   th {
     padding: 8px;
-    font-family: Inter;
+    font-family: "Red Hat Display";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -585,7 +585,7 @@ span {
   }
   td {
     padding: 8px;
-    font-family: Inter;
+    font-family: "Red Hat Display";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
