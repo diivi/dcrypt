@@ -74,7 +74,10 @@ router.post("/login", contentSecurity, async (req, res) => {
     return res.render("login.ejs", { failure: true, active: "login" });
 
   const token = jwt.sign({ _id: team._id }, process.env.JWT);
-  res.cookie("team", token, { httpOnly: true });
+  res.cookie("team", token, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 1000,
+  });
   res.redirect("/dashboard");
 });
 

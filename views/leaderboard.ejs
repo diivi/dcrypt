@@ -25,8 +25,8 @@
     <td><%- allteams.indexOf(element)+1 %></td>
     <td><%- element.name %></th>
     <td><%- element.fp %></td>
-    <td>
-      <span onclick="openModal('<%- element.name %>')">Attack</span>
+    <td class='atkcol'>
+      <span class='atkbtn' onclick="openModal('<%- element.name %>')">Attack</span>
     </td>
   </tr>
   <% }}) %>
@@ -35,23 +35,53 @@
 <% locals.allteams.forEach( function (element){ %> <% if
 ((element._id).toString()!==(locals.team._id).toString()) { %>
 <div id="<%= element.name %>" class="mymodal">
+      <h1>
+        Attacking <%= element.name %>
+      </h1>
+  <div class="twodivs">
+  <div class="inventory">
+    <h1>Inventory</h1>
+    <div class="row">
+    <div class="soldiers inventroop">
+      <p>Soliders</p>
+      <p><%= locals.team.troops.soldiers %> </p>
+      <img src="/images/aircraft.svg" alt="">
+      </div>
+    <div class="aircrafts inventroop">
+      <p>Aircrafts</p>
+      <p><%= locals.team.troops.aircrafts %></p>
+      <img src="/images/aircraft.svg" alt="">
+      </div>
+      <div class="tanks inventroop">
+        <p>Tanks</p>
+        <p><%= locals.team.troops.tanks %></p>
+      <img src="/images/aircraft.svg" alt="">
+
+        </div>
+      </div>
+      </div>
+  <div class="deploy">
   <form action="/attack" method="POST" class="attack">
-    <p class="close" onclick="closeModal('<%= element.name %>')">X</p>
-    <p>
-      Attacking <%= element.name %>
+    <h1>Deploy</h1>
+    <p class="close" onclick="closeModal('<%= element.name %>')">&#10060;</p>
+
       <input
         type="hidden"
         value="<%= element.name %>"
         name="defender"
-        class="defender"
         readonly
       />
-    </p>
+
+    <div class="inputz">
+
     <div class="number-input">
+
       <button
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepDown()"
       ></button>
+      <div class="middle">
+      <h3>Soldiers</h3>
       <input
         class="quantity soldier"
         min="0"
@@ -60,6 +90,7 @@
         type="number"
         max="<%= locals.team.troops.soldiers %>"
       />
+      </div>
       <button
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepUp()"
@@ -71,6 +102,8 @@
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepDown()"
       ></button>
+      <div class="middle">
+      <h3>Aircrafts</h3>
       <input
         class="quantity aircraft"
         min="0"
@@ -79,6 +112,7 @@
         type="number"
         max="<%= locals.team.troops.aircrafts %>"
       />
+      </div>
       <button
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepUp()"
@@ -90,6 +124,8 @@
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepDown()"
       ></button>
+      <div class="middle">
+        <h3 style="text-align: center ;">Tanks</h3>
       <input
         class="quantity tank"
         min="0"
@@ -98,14 +134,18 @@
         type="number"
         max="<%= locals.team.troops.tanks %>"
       />
+      </div>
       <button
         type="button"
         onclick="this.parentNode.querySelector('input[type=number').stepUp()"
         class="plus"
       ></button>
     </div>
-    <input type="submit" value="Attack" />
+    </div>
+    <input type="submit" value="Confirm" />
   </form>
+  </div>
+  </div>
 </div>
 <% }}) %>
 <script

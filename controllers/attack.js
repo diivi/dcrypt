@@ -50,7 +50,6 @@ router.post("/attack", verify, async (req, res) => {
       if (err) {
         console.log(err);
       }
-      console.log(num);
     }
     Team.updateOne(
       { school: defender.school },

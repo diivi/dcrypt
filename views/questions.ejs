@@ -49,8 +49,16 @@
     </div>
   </div>
   <% } }) %>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    defer
+  ></script>
+
   <script>
     function openModal(id) {
+      $(".qmodal").each(function () {
+        $(this).css({ display: "none" });
+      });
       document.getElementById(id).style.display = "block";
     }
     function closeModal(id) {
