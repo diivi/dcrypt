@@ -10,9 +10,11 @@ const dashRoute = require("./routes/dashboard");
 const boardRoute = require("./routes/leaderboard");
 const admin = require("./routes/admin");
 const questionRoute = require("./routes/questions");
+const shopRoute = require("./routes/shop");
 
 const attackRoute = require("./controllers/attack");
 const makerRoute = require("./controllers/questionMaker");
+const buyRoute = require("./controllers/buy");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -47,14 +49,8 @@ app.use("/", attackRoute);
 app.use("/", makerRoute);
 app.use("/", admin);
 app.use("/", questionRoute);
-
-app.use(function (req, res, next) {
-  res.setHeader(
-    "Content-Security-Policy",
-    "script-src 'self' https://* 'unsafe-inline'"
-  );
-  return next();
-});
+app.use("/", shopRoute);
+app.use("/", buyRoute);
 
 app.get("/", contentSecurity, (req, res) => {
   res.render("index.ejs", { active: "home" });

@@ -4,7 +4,7 @@ const Team = require("../models/Team");
 
 router.post("/attack", verify, async (req, res) => {
   const totalAttack =
-    req.body.soldier * 100 + req.body.aircraft * 300 + req.body.tank * 400;
+    req.body.soldier * 150 + req.body.aircraft * 300 + req.body.tank * 500;
   const defender = await Team.findOne({ name: req.body.defender });
   //*Success
   if (totalAttack - defender.dp >= 50) {

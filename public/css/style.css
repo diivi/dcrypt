@@ -237,13 +237,20 @@ table {
   color: #ffffff;
   text-decoration: none;
 }
-.close {
+.mymodal .close {
   position: absolute;
   top: 5vh;
   right: 5vw;
   cursor: pointer;
   z-index: 1;
   font-size: 2vw;
+}
+.qmodal .close {
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1;
+  position: absolute;
 }
 
 .sidebyside {
@@ -333,7 +340,7 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
   width: 3rem;
-  height: 8rem;
+  height: 8.7rem;
   cursor: pointer;
   margin: 0;
   position: relative;
@@ -356,7 +363,7 @@ input[type="number"]:focus {
   outline: none;
 }
 .middle {
-  height: 48px;
+  text-align: center;
 }
 .middle h3 {
   margin-bottom: 20px;
@@ -423,7 +430,7 @@ input[type="number"]:focus {
 .inputz {
   display: flex;
   justify-content: space-between;
-  padding: 0 5%;
+  padding: 0 5vw;
 }
 .deploy input[type="submit"] {
   float: right;
@@ -484,7 +491,237 @@ span {
   background-color: red;
   cursor: pointer;
 }
+.shop {
+  padding: 10vh 5%;
+}
+.top {
+  width: 100%;
+  position: relative;
+  height: 5vh;
+}
+.switcher {
+  width: 20%;
+  height: 100%;
+  display: inline-block;
+}
+.switcher div {
+  background-color: #262626;
+  font-family: "Red Hat Display";
+  width: 50%;
+  height: 100%;
+  color: red;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  float: left;
+}
+.bal {
+  background-color: #262626;
+  font-family: "Red Hat Display";
+  width: 10%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  float: right;
+  display: grid;
+  place-items: center;
+}
+
+.swactive {
+  background-color: #d20000 !important;
+}
+.swactive p {
+  color: white;
+}
+.shopitem .number-input input[type="number"] {
+  font-family: "Red Hat Display";
+  max-width: 5rem;
+  font-size: 1rem;
+  background-color: #1f1f1f;
+  height: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  font-weight: 400;
+}
+.shopitem input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background: transparent;
+  border: none;
+}
+
+.shopitem input[type="number"]::-webkit-inner-spin-button,
+.shopitem input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.shopitem .number-input {
+  background: transparent;
+  border: none;
+  display: inline-flex;
+}
+.shopitem .number-input,
+.shopitem .number-input {
+  box-sizing: border-box;
+}
+
+.shopitem .number-input button {
+  outline: none;
+  -webkit-appearance: none;
+  background-color: #1f1f1f;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.shopitem .number-input button:before,
+.shopitem .number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 1rem;
+  height: 2px;
+  background-color: #9d1111;
+  transform: translate(-50%, -50%);
+}
+.shopitem .number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.shopitem input[type="number"]:focus {
+  outline: none;
+}
+.shopitems {
+  display: flex;
+  margin-top: 2%;
+}
+
+.shopitem {
+  background-color: #272727;
+  padding: 1%;
+  width: 25%;
+  color: white;
+  border-radius: 14px;
+}
+.shopitem + .shopitem {
+  margin-left: 2%;
+}
+.shopitem h1 {
+  text-align: center;
+  color: #d20000;
+}
+.side {
+  display: flex;
+  flex-wrap: wrap;
+}
+.iteminfo {
+  flex: 1 1 50%;
+  text-align: center;
+  position: relative;
+}
+.iteminfo p:first-of-type {
+  display: block;
+}
+.flexer {
+  flex: 1 1 50%;
+}
+img {
+  width: 100%;
+}
+.iteminfo p {
+  text-align: center;
+  font-size: 1.2vw;
+}
+.botum {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.shopitem h3 {
+  font-weight: 400;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+  font-size: 1.2vw;
+}
+.shopitem p + p {
+  margin-bottom: 10px;
+}
+.deduct {
+  color: #fff;
+  text-align: right;
+  padding: 0% 5%;
+  margin-top: 10px;
+}
+.deduct p {
+  display: inline-block;
+  transform: translateX(50%);
+  color: #b12323;
+}
+.buytr {
+  flex-grow: 1;
+  float: right;
+  margin-top: 2%;
+  border: none;
+  outline: none;
+  background: #9d1111;
+  border-radius: 14px;
+  font-family: "Red Hat Display";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 29px;
+  padding: 0.6vw 2vw;
+  color: #ffffff;
+  margin-left: -10px;
+  z-index: 1;
+  cursor: pointer;
+}
 @media only screen and (max-width: 1000px) {
+  .buytr {
+    font-size: 12px;
+    padding: 1.5vw 7vw;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .bal {
+    width: 20%;
+  }
+  .switcher {
+    width: 60%;
+  }
+  .iteminfo p {
+    font-size: 5vw;
+  }
+  .shopitems {
+    display: block;
+    margin-top: 0%;
+  }
+  .shopitem + .shopitem {
+    margin-left: 10%;
+  }
+  .shopitem {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+  .shopitem h3 {
+    width: 80%;
+    margin-left: 10%;
+    font-size: 4vw;
+    margin-bottom: 10%;
+  }
   .twodivs {
     display: block;
   }
@@ -519,7 +756,7 @@ span {
   .inventroop p {
     font-size: 18px;
   }
-  .close {
+  .mymodal .close {
     font-size: 5vw;
     top: 2vh;
   }

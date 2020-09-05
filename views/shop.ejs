@@ -1,0 +1,274 @@
+<%- include('headerin'); -%>
+<div class="shop">
+  <h1 class="heading">Shop</h1>
+  <div class="top">
+    <div class="switcher">
+      <div class="one swactive" id="one">
+        <p>Troops</p>
+      </div>
+      <div class="two" id="two">
+        <p>Powerups</p>
+      </div>
+    </div>
+    <div class="bal">
+      <p><%= locals.team.bp %><font style="color: #f10000">BP</font></p>
+    </div>
+  </div>
+  <div class="deduct">
+    <p id="deduct">0</p>
+  </div>
+
+  <form action="/buy" method="post" class="oneform">
+    <div class="shopitems">
+      <div class="shopitem">
+        <h1>Soldier</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/soldier.png" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Attack : 150</p>
+              <p>Defense : 150</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown();"
+                  style="border-right: 0.1px solid #555555"
+                  class="minussol"
+                ></button>
+                <input
+                  class="quantity soldier"
+                  min="0"
+                  name="soldier"
+                  value="0"
+                  type="number"
+                  max="10"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  class="plus sol"
+                  style="border-left: 0.1px solid #555555"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>mast attack karega bhai mm lele fastamfast</h3>
+      </div>
+      <div class="shopitem">
+        <h1>Aircraft</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/soldier.png" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Attack : 300</p>
+              <p>Defense : 0</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minusair"
+                ></button>
+                <input
+                  class="quantity aircraft"
+                  min="0"
+                  name="aircraft"
+                  value="0"
+                  type="number"
+                  max="10"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  class="plus air"
+                  style="border-left: 0.1px solid #555555"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>mast attack karega bhai mm lele fastamfast</h3>
+      </div>
+
+      <div class="shopitem">
+        <h1>Bomber</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/soldier.png" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Attack : 0</p>
+              <p>Defense : 300</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minusbomb"
+                ></button>
+                <input
+                  class="quantity bomber"
+                  min="0"
+                  name="bomber"
+                  value="0"
+                  type="number"
+                  max="10"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  style="border-left: 0.1px solid #555555"
+                  class="plus bomb"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>mast attack karega bhai mm lele fastamfast</h3>
+      </div>
+
+      <div class="shopitem">
+        <h1>Tank</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/soldier.png" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Attack : 500</p>
+              <p>Defense : 500</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minustank"
+                ></button>
+                <input
+                  class="quantity tank"
+                  min="0"
+                  name="tank"
+                  value="0"
+                  type="number"
+                  max="10"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  style="border-left: 0.1px solid #555555"
+                  class="plus tank"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>mast attack karega bhai mm lele fastamfast</h3>
+      </div>
+    </div>
+    <button class="buytr">Buy</button>
+  </form>
+  <form class="twoform" style="display: none">
+    <h1>Hello</h1>
+  </form>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    <% if (locals.error){ %>
+      <% if (locals.error=='buywrong'){ %>
+    window.onload = function () {
+      alert("You Don't have enough BP!");
+    };<% } else{ %>
+         window.onload = function () {
+          alert("Please select atleast one item.");
+        };
+    <% }} %>
+    function solUpdate(kaise) {
+      var total = parseInt(document.querySelector(".deduct").innerText);
+      kaise == "change"
+        ? (total += document.querySelector(".soldier").value * 100)
+        : kaise == "plus"
+        ? (total += 100)
+        : (total -= 100);
+      if (total >= 0 && total <= 10000) {
+        document.querySelector(".deduct p").innerText = total;
+      }
+    }
+    document.querySelector(".minussol").addEventListener("click", () => {
+      solUpdate("minus");
+    });
+    document.querySelector(".plus.sol").addEventListener("click", () => {
+      solUpdate("plus");
+    });
+    function airUpdate(kaise) {
+      var total = parseInt(document.querySelector(".deduct").innerText);
+      kaise == "change"
+        ? (total = document.querySelector(".aircraft").value * 250)
+        : kaise == "plus"
+        ? (total += 250)
+        : (total -= 250);
+      if (total >= 0 && total <= 10000) {
+        document.querySelector(".deduct p").innerText = total;
+      }
+    }
+    document.querySelector(".minusair").addEventListener("click", () => {
+      airUpdate("minus");
+    });
+    document.querySelector(".plus.air").addEventListener("click", () => {
+      airUpdate("plus");
+    });
+
+    function bombUpdate(kaise) {
+      var total = parseInt(document.querySelector(".deduct").innerText);
+      kaise == "change"
+        ? (total = document.querySelector(".bomber").value * 250)
+        : kaise == "plus"
+        ? (total += 250)
+        : (total -= 250);
+      if (total >= 0 && total <= 10000) {
+        document.querySelector(".deduct p").innerText = total;
+      }
+    }
+    document.querySelector(".minusbomb").addEventListener("click", () => {
+      bombUpdate("minus");
+    });
+    document.querySelector(".plus.bomb").addEventListener("click", () => {
+      bombUpdate("plus");
+    });
+
+    function tankUpdate(kaise) {
+      var total = parseInt(document.querySelector(".deduct").innerText);
+      kaise == "change"
+        ? (total = document.querySelector(".tank").value * 400)
+        : kaise == "plus"
+        ? (total += 400)
+        : (total -= 400);
+      if (total >= 0 && total <= 10000) {
+        document.querySelector(".deduct p").innerText = total;
+      }
+    }
+    document.querySelector(".minustank").addEventListener("click", () => {
+      tankUpdate("minus");
+    });
+    document.querySelector(".plus.tank").addEventListener("click", () => {
+      tankUpdate("plus");
+    });
+
+    $(".switcher div").click(function () {
+      $(".switcher div").removeClass("swactive");
+      $(this).toggleClass("swactive");
+      var x = $(this).attr("id");
+      $("form").hide();
+      $("." + x + "form").toggle();
+    });
+  </script>
+  <%- include('footer'); -%>
+</div>
