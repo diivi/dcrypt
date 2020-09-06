@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-// var cron = require("node-cron");
+var cron = require("node-cron");
 var helmet = require("helmet");
 
 const authRoute = require("./routes/auth");
@@ -56,7 +56,7 @@ app.get("/", contentSecurity, (req, res) => {
   res.render("index.ejs", { active: "home" });
 });
 
-app.get("/register", (req, res) => {
+app.get("/register", contentSecurity, (req, res) => {
   res.render("register.ejs", { active: "register" });
 });
 
@@ -64,21 +64,54 @@ app.get("/login", (req, res) => {
   res.render("login.ejs", { active: "login" });
 });
 
-// fpIncrease = cron.schedule(
-//   "0 * * * *",
-//   () => {
-//     Team.updateMany({}, { $inc: { fp: 100 } }, { multi: true }, inccallback);
-//     function inccallback(err, num) {
-//       if (err) {
-//         console.log(err);
-//       }
-//     }
-//   },
-//   {
-//     scheduled: true,
-//     timezone: "Asia/Kolkata",
-//   }
-// );
-// fpIncrease.start();
+fpIncrease = cron.schedule(
+  "* * * * *",
+  () => {
+    Team.find({}, function (err, docs) {
+      docs.forEach((element) => {
+        if (element.powerupTimer > 0) {
+          Team.updateOne(
+            { email: element.email },
+            {
+              $inc: {
+                powerupTimer: -1,
+              },
+            },
+            { multi: true },
+            timercallback
+          );
+          function timercallback(err, num) {
+            if (err) {
+              console.log(err);
+            }
+          }
+        } else {
+          Team.updateOne(
+            { email: element.email },
+            {
+              $set: {
+                dpVisible: false,
+                shield: false,
+                multiplier: false,
+              },
+            },
+            { multi: true },
+            timeupcallback
+          );
+          function timeupcallback(err, num) {
+            if (err) {
+              console.log(err);
+            }
+          }
+        }
+      });
+    });
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Kolkata",
+  }
+);
+fpIncrease.start();
 
 app.listen(port, () => console.log(`running on port ${port}`));

@@ -12,49 +12,53 @@
       </div>
     </div>
     <% }) %> <% locals.questions.forEach( function (element){ %> <% if
-    (!locals.team.questions.includes(element.title)) { %>
-    <div id="<%- element.title %>" class="qmodal">
-      <form action="/answer" method="POST">
-        <p class="close" onclick="closeModal('<%= element.title %>')">
-          &#10060;
+    (!locals.team.questions.includes(element.title)) { %> <div id="<%-
+    element.title %>" class="qmodal" <% if (locals.curr===element.title){ %>
+    style="display: block" <%}%>>
+    <form action="/answer" method="POST">
+      <p class="close" onclick="closeModal('<%= element.title %>')">&#10060;</p>
+      <div class="qinfo">
+        <p>
+          <input
+            type="hidden"
+            value="<%= element.title%>"
+            name="title"
+            class="defender"
+            readonly
+          />
         </p>
-        <div class="qinfo">
-          <p>
-            <input
-              type="hidden"
-              value="<%= element.title%>"
-              name="title"
-              class="defender"
-              readonly
-            />
-          </p>
-          <p class="qhead"><%- element.title %></p>
-          <p class="qtext"><%- element.question %></p>
-          <% if (element.attachment!=""){ %>
-          <a
-            class="attacher"
-            href="/questionfiles/<%-(element.attachment)%>"
-            download="<%- element.attachment %>"
-            target="_blank"
-          >
-            <%- element.attachment %>
-          </a>
-          <% } %>
-          <div class="sidebyside">
-            <input type="text" name="ans" />
-            <button>Submit</button>
-          </div>
+        <p class="qhead"><%- element.title %></p>
+        <p class="qtext"><%- element.question %></p>
+        <% if (element.attachment!=""){ %>
+        <a
+          class="attacher"
+          href="/questionfiles/<%-(element.attachment)%>"
+          download="<%- element.attachment %>"
+          target="_blank"
+        >
+          <%- element.attachment %>
+        </a>
+        <% } %>
+        <div class="sidebyside">
+          <input type="text" name="ans" <% if (locals.curr===element.title){ %>
+          value="Incorrect" style="color:red;border:1px solid red"<%}%>/>
+          <button>Submit</button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
   <% } }) %>
-  <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-    defer
-  ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <script>
+    $(document).ready(function () {
+      $('input[name = "ans"]').click(function (e) {
+        e.preventDefault();
+        $(this).css({ color: "white", opacity: "0.8", border: "none" });
+        $(this).attr({ value: "" });
+      });
+    });
+
     function openModal(id) {
       $(".qmodal").each(function () {
         $(this).css({ display: "none" });

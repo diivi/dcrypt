@@ -3,8 +3,11 @@ const verify = require("../middleware/tokenVerification");
 const Team = require("../models/Team");
 
 router.post("/attack", verify, async (req, res) => {
-  const totalAttack =
+  var totalAttack =
     req.body.soldier * 150 + req.body.aircraft * 300 + req.body.tank * 500;
+  if (req.team.multiplier === true) {
+    totalAttack *= 1.5;
+  }
   const defender = await Team.findOne({ name: req.body.defender });
   //*Success
   if (totalAttack - defender.dp >= 50) {
@@ -26,6 +29,8 @@ router.post("/attack", verify, async (req, res) => {
       {
         $inc: {
           "troops.soldiers": -req.body.soldier,
+          "troops.aircrafts": -req.body.aircraft,
+          "troops.tanks": -req.body.tank,
           fp: parseInt(defender.fp / 2),
         },
       },

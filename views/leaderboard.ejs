@@ -6,6 +6,9 @@
     <th>Rank</th>
     <th>Name</th>
     <th>Flag Points</th>
+    <% if (locals.team.dpVisible===true) { %>
+     <th>DP</th>
+    <% } %>
     <th></th>
   </tr>
   <% locals.allteams.forEach( function (element){ %> <% if
@@ -14,8 +17,11 @@
       style="background-color:#3C3838" <% }else{ %>
       style="background-color:#191919" <% }%>>
     <td><%- allteams.indexOf(element)+1 %></td>
-    <td>You</td>
+    <td style="color:red">You</td>
     <td><%- element.fp %></td>
+        <% if (locals.team.dpVisible===true) { %>
+        <td><%- element.dp %></td>
+        <% } %>
     <td></td>
   </tr>
   <% }else{ %>
@@ -25,15 +31,23 @@
     <td><%- allteams.indexOf(element)+1 %></td>
     <td><%- element.name %></th>
     <td><%- element.fp %></td>
+            <% if (locals.team.dpVisible===true) { %>
+            <td><%- element.dp %></td>
+            <% } %>
+    <% if (element.shield===false){ %>
     <td class='atkcol'>
       <span class='atkbtn' onclick="openModal('<%- element.name %>')">Attack</span>
     </td>
+    <% }else{ %>
+      <td>
+         </td>
+    <% } %>
   </tr>
   <% }}) %>
 </table>
 </div>
 <% locals.allteams.forEach( function (element){ %> <% if
-((element._id).toString()!==(locals.team._id).toString()) { %>
+(((element._id).toString()!==(locals.team._id).toString()) && element.shield===false ) { %>
 <div id="<%= element.name %>" class="mymodal">
       <h1>
         Attacking <%= element.name %>
@@ -45,17 +59,17 @@
     <div class="soldiers inventroop">
       <p>Soliders</p>
       <p><%= locals.team.troops.soldiers %> </p>
-      <img src="/images/aircraft.svg" alt="">
+      <img src="/images/soldier.svg" alt="">
       </div>
     <div class="aircrafts inventroop">
-      <p>Aircrafts</p>
+      <p>Bombers</p>
       <p><%= locals.team.troops.aircrafts %></p>
-      <img src="/images/aircraft.svg" alt="">
+      <img src="/images/bomber.svg" alt="">
       </div>
       <div class="tanks inventroop">
         <p>Tanks</p>
         <p><%= locals.team.troops.tanks %></p>
-      <img src="/images/aircraft.svg" alt="">
+      <img src="/images/tank.svg" alt="">
 
         </div>
       </div>
@@ -103,7 +117,7 @@
         onclick="this.parentNode.querySelector('input[type=number').stepDown()"
       ></button>
       <div class="middle">
-      <h3>Aircrafts</h3>
+      <h3>Bombers</h3>
       <input
         class="quantity aircraft"
         min="0"

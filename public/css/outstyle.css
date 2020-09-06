@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=block");
 @font-face {
   font-family: fcsq;
   src: url(../fonts/fcsq.woff2);
-  font-weight: bold;
+  font-display: block;
 }
 * {
   margin: 0;
@@ -19,7 +19,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #1f1f1f;
-  font-family: Inter, "sans-serif";
+  font-family: "Red Hat Display", "sans-serif";
   overflow-x: hidden;
 }
 
@@ -49,7 +49,7 @@ input:not([type="submit"]) {
   padding: 8px 10px;
   background: #1f1f1f;
   border-radius: 10px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -62,7 +62,7 @@ input[type="submit"]:not(.registrr) {
   border: none;
   outline: none;
   color: white;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-size: 18px;
   background-color: #9d1111;
   padding: 0.8vw 1.4vw;
@@ -87,7 +87,7 @@ input[type="submit"]:not(.registrr) {
   border: none;
   outline: none;
   color: white;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-size: 18px;
   position: relative;
   margin: 10px 0px;
@@ -108,7 +108,7 @@ form {
 }
 
 form h1 {
-  font-family: Inter, "sans-serif";
+  font-family: "Red Hat Display", "sans-serif";
   font-style: normal;
   font-weight: bold;
   font-size: 3vw;
@@ -237,7 +237,7 @@ h1 {
   outline: none;
   background: #e41406;
   border-radius: 8px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -246,9 +246,9 @@ h1 {
   cursor: pointer;
 }
 .lb {
-  font-family: Inter;
+  font-family: "Red Hat Display";
 
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 64px;
@@ -265,7 +265,7 @@ tr {
 }
 th {
   padding: 24px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -275,7 +275,7 @@ th {
 }
 td {
   padding: 24px;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -294,7 +294,7 @@ table {
   border: none;
   outline: none;
   color: #fff;
-  font-family: Inter;
+  font-family: "Red Hat Display";
   font-size: 18px;
   background-color: #9d1111;
   padding: 12px 40px;
@@ -316,7 +316,7 @@ table {
   }
   th {
     padding: 8px;
-    font-family: Inter;
+    font-family: "Red Hat Display";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -326,7 +326,7 @@ table {
   }
   td {
     padding: 8px;
-    font-family: Inter;
+    font-family: "Red Hat Display";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;

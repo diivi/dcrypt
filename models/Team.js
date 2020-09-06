@@ -27,8 +27,8 @@ const teamSchema = new mongoose.Schema({
     max: 1024,
   },
   created_at: {
-    type: Date,
-    default: Date.now(),
+    type: String,
+    default: Date().toLocaleString(),
   },
   fp: {
     type: Number,
@@ -72,6 +72,26 @@ const teamSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  shield: {
+    type: Boolean,
+    default: false,
+  },
+  halfPrice: {
+    type: Boolean,
+    default: false,
+  },
+  multiplier: {
+    type: Boolean,
+    default: false,
+  },
+  powerupTimer: {
+    type: Number,
+    default: 0,
+  },
+  discountsLeft:{
+    type: Number,
+    default:0
+  }
 });
 
 teamSchema.pre("updateOne", function (next) {
@@ -83,7 +103,7 @@ teamSchema.pre("updateOne", function (next) {
       data["$set"].dp = 0;
       next();
     }
-  } catch {
+  } catch (err) {
     next();
   }
 });

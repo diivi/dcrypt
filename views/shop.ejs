@@ -15,7 +15,24 @@
     </div>
   </div>
   <div class="deduct">
-    <p id="deduct">0</p>
+    <p>
+      <span style="background: none" id="deduct" class="oneform">0</span>
+      <% if (locals.team.halfPrice===true) { %>
+      <span style="background: none; color: white" class="oneform">x 1/2</span>
+      <% } %>
+    </p>
+    <p>
+      <span id="deduct" class="twoform" style="display: none; background: none"
+        >0
+      </span>
+      <% if (locals.team.halfPrice===true) { %>
+      <span
+        class="twoform"
+        style="display: none; background: none; color: white"
+        >x 1/2</span
+      >
+      <% } %>
+    </p>
   </div>
 
   <form action="/buy" method="post" class="oneform">
@@ -24,7 +41,7 @@
         <h1>Soldier</h1>
         <div class="side">
           <div class="flexer">
-            <img src="/images/soldier.png" alt="" />
+            <img src="/images/soldier.svg" alt="" />
           </div>
           <div class="iteminfo">
             <div class="botum">
@@ -56,13 +73,16 @@
             </div>
           </div>
         </div>
-        <h3>mast attack karega bhai mm lele fastamfast</h3>
+        <h3>
+          The building block of any strong army, good for defense and attack
+          both.
+        </h3>
       </div>
       <div class="shopitem">
-        <h1>Aircraft</h1>
+        <h1>Bomber</h1>
         <div class="side">
           <div class="flexer">
-            <img src="/images/soldier.png" alt="" />
+            <img src="/images/bomber.svg" alt="" />
           </div>
           <div class="iteminfo">
             <div class="botum">
@@ -94,14 +114,14 @@
             </div>
           </div>
         </div>
-        <h3>mast attack karega bhai mm lele fastamfast</h3>
+        <h3>Rain hellfire on your enemies from the sky.</h3>
       </div>
 
       <div class="shopitem">
-        <h1>Bomber</h1>
+        <h1>A.A.G</h1>
         <div class="side">
           <div class="flexer">
-            <img src="/images/soldier.png" alt="" />
+            <img src="/images/aag.svg" alt="" style="transform: scale(1)" />
           </div>
           <div class="iteminfo">
             <div class="botum">
@@ -133,14 +153,14 @@
             </div>
           </div>
         </div>
-        <h3>mast attack karega bhai mm lele fastamfast</h3>
+        <h3>Shoot down enemy aircrafts with extreme explosive power.</h3>
       </div>
 
       <div class="shopitem">
         <h1>Tank</h1>
         <div class="side">
           <div class="flexer">
-            <img src="/images/soldier.png" alt="" />
+            <img src="/images/tank.svg" alt="" />
           </div>
           <div class="iteminfo">
             <div class="botum">
@@ -172,13 +192,174 @@
             </div>
           </div>
         </div>
-        <h3>mast attack karega bhai mm lele fastamfast</h3>
+        <h3>Overpowered.</h3>
       </div>
     </div>
     <button class="buytr">Buy</button>
   </form>
-  <form class="twoform" style="display: none">
-    <h1>Hello</h1>
+  <form action="/powerup" method="post" class="twoform" style="display: none">
+    <div class="shopitems">
+      <div class="shopitem">
+        <h1>Multiplier</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/multiplier.svg" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Duration : 1 hr</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown();"
+                  style="border-right: 0.1px solid #555555"
+                  class="minusmul"
+                ></button>
+                <input
+                  class="quantity multiplier"
+                  min="0"
+                  name="multiplier"
+                  value="0"
+                  type="number"
+                  max="1"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  class="plus mul"
+                  style="border-left: 0.1px solid #555555"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>Double the attack stat of your troops for 1 hour.</h3>
+      </div>
+      <div class="shopitem">
+        <h1>Shield</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/shield.svg" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Duration : 1 hr</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minusshield"
+                ></button>
+                <input
+                  class="quantity shield"
+                  min="0"
+                  name="shield"
+                  value="0"
+                  type="number"
+                  max="1"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  class="plus shield"
+                  style="border-left: 0.1px solid #555555"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>Protect yourself from enemy attacks for 1 hour.</h3>
+      </div>
+
+      <div class="shopitem">
+        <h1>Half Prices</h1>
+        <div class="side">
+          <div class="flexer">
+            <img
+              src="/images/discount.svg"
+              alt=""
+              style="transform: scale(1)"
+            />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Uses : 3</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minushalf"
+                ></button>
+                <input
+                  class="quantity half"
+                  min="0"
+                  name="half"
+                  value="0"
+                  type="number"
+                  max="1"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  style="border-left: 0.1px solid #555555"
+                  class="plus half"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>
+          50% discount on all items on the shop. To be used with the next three
+          transactions
+        </h3>
+      </div>
+
+      <div class="shopitem">
+        <h1>DP Visibility</h1>
+        <div class="side">
+          <div class="flexer">
+            <img src="/images/dpshow.svg" alt="" />
+          </div>
+          <div class="iteminfo">
+            <div class="botum">
+              <p>Duration : 1 Hour</p>
+              <div class="number-input">
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                  style="border-right: 0.1px solid #555555"
+                  class="minusdp"
+                ></button>
+                <input
+                  class="quantity dp"
+                  min="0"
+                  name="dp"
+                  value="0"
+                  type="number"
+                  max="1"
+                  readonly
+                />
+                <button
+                  type="button"
+                  onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                  style="border-left: 0.1px solid #555555"
+                  class="plus dp"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>
+          See every player's Defence Points on the leaderboard for 1 hour.
+        </h3>
+      </div>
+    </div>
+    <button class="buytr">Buy</button>
   </form>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
@@ -186,20 +367,24 @@
       <% if (locals.error=='buywrong'){ %>
     window.onload = function () {
       alert("You Don't have enough BP!");
-    };<% } else{ %>
+    };<% } else if  (locals.error == 'buyless') { %>
          window.onload = function () {
           alert("Please select atleast one item.");
         };
+    <% } else { %>
+        window.onload = function () {
+          alert("Only one powerup can be active at a time!");
+        };
     <% }} %>
     function solUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct").innerText);
+      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
       kaise == "change"
         ? (total += document.querySelector(".soldier").value * 100)
         : kaise == "plus"
         ? (total += 100)
         : (total -= 100);
       if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct p").innerText = total;
+        document.querySelector(".deduct .oneform").innerText = total;
       }
     }
     document.querySelector(".minussol").addEventListener("click", () => {
@@ -209,14 +394,14 @@
       solUpdate("plus");
     });
     function airUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct").innerText);
+      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
       kaise == "change"
         ? (total = document.querySelector(".aircraft").value * 250)
         : kaise == "plus"
         ? (total += 250)
         : (total -= 250);
       if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct p").innerText = total;
+        document.querySelector(".deduct .oneform").innerText = total;
       }
     }
     document.querySelector(".minusair").addEventListener("click", () => {
@@ -227,14 +412,14 @@
     });
 
     function bombUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct").innerText);
+      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
       kaise == "change"
         ? (total = document.querySelector(".bomber").value * 250)
         : kaise == "plus"
         ? (total += 250)
         : (total -= 250);
       if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct p").innerText = total;
+        document.querySelector(".deduct .oneform").innerText = total;
       }
     }
     document.querySelector(".minusbomb").addEventListener("click", () => {
@@ -245,14 +430,14 @@
     });
 
     function tankUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct").innerText);
+      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
       kaise == "change"
         ? (total = document.querySelector(".tank").value * 400)
         : kaise == "plus"
         ? (total += 400)
         : (total -= 400);
       if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct p").innerText = total;
+        document.querySelector(".deduct .oneform").innerText = total;
       }
     }
     document.querySelector(".minustank").addEventListener("click", () => {
@@ -262,7 +447,36 @@
       tankUpdate("plus");
     });
 
+        function multiUpdate() {
+          document.querySelector(".deduct .twoform").innerText =document.querySelector(".multiplier").value * 1000 + document.querySelector(".shield").value * 1000 + document.querySelector(".half").value * 1000+ document.querySelector(".dp").value * 1000
+          }
+          document.querySelector(".minusmul").addEventListener("click", () => {
+            multiUpdate();
+          });
+          document.querySelector(".plus.mul").addEventListener("click", () => {
+            multiUpdate();
+          });
+                    document.querySelector(".minusshield").addEventListener("click", () => {
+                        multiUpdate();
+                      });
+                      document.querySelector(".plus.shield").addEventListener("click", () => {
+                        multiUpdate();
+                      });
+                                document.querySelector(".minushalf").addEventListener("click", () => {
+                                    multiUpdate();
+                                  });
+                                  document.querySelector(".plus.half").addEventListener("click", () => {
+                                    multiUpdate();
+                                  });
+                                            document.querySelector(".minusdp").addEventListener("click", () => {
+                                                multiUpdate();
+                                              });
+                                              document.querySelector(".plus.dp").addEventListener("click", () => {
+                                                multiUpdate();
+                                              });
+
     $(".switcher div").click(function () {
+      $(".deduct span").hide()
       $(".switcher div").removeClass("swactive");
       $(this).toggleClass("swactive");
       var x = $(this).attr("id");
