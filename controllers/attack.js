@@ -18,7 +18,7 @@ router.post("/attack", verify, async (req, res) => {
           dp: defender.dp - totalAttack,
           fp: parseInt(defender.fp / 2),
           defenseCooldown: 60,
-        },  
+        },
       },
       { multi: true },
       callback
@@ -47,7 +47,7 @@ router.post("/attack", verify, async (req, res) => {
         console.log(err);
       }
     }
-    res.redirect("/dashboard/?success=true");
+    res.redirect("/leaderboard/?success=true");
   } else {
     //!Failure
     Team.updateOne(
@@ -77,7 +77,7 @@ router.post("/attack", verify, async (req, res) => {
         console.log(err);
       }
     }
-    res.redirect("/dashboard/?success=false");
+    res.redirect("/leaderboard/?success=false");
   }
 });
 

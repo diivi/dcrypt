@@ -77,4 +77,5 @@ app.get("/login", contentSecurity, (req, res) => {
 app.get("*", contentSecurity, function (req, res) {
   res.status(404).render("404.ejs");
 });
+
 app.listen(port, () => console.log(`running on port ${port}`));

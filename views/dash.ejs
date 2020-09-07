@@ -2,14 +2,8 @@
 <div class="dashboard">
   <div class="top">
     <h1><%- locals.team.name.trim() %>, <%- locals.team.school.trim() %></h1>
-    <% if (locals.success ==='true') { %>
-    <h1 style="color: green">Attack Successful!</h1>
-    <% }else if(locals.success ==='false') { %>
-    <h1 style="color:red">Attack Unsuccessful!</h1>
-    <% } else if(locals.success ==='allot'){ %>
-    <h1 style="color:red">Please select atleast one troop!</h1>
-    <% }%>
-  </div>
+    <h1 style="color:red;cursor: pointer;text-align:right" onclick="window.location.href='/'">Logout</h1>
+    </div>
   <div class="dashrow">
     <div class="points">
       <div class="fp">
@@ -123,6 +117,12 @@
     </div>
   </div>
   <script>
+
+        <% if (locals.success === 'allot') { %>
+            window.onload = function(){
+              alert('Please select atleast one troop to be alloted');
+            }
+            <% }%>
     function multiUpdate() {
       document.querySelector(".total").value = parseInt(document.querySelector(".soldier").value) * 100 + parseInt(document.querySelector(".tank").value) * 400 + parseInt(document.querySelector(".bomber").value) * 250 ;
     }

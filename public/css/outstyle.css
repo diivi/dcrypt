@@ -121,7 +121,6 @@ form h1 {
 }
 .error {
   color: red;
-  margin-left: -20px;
 }
 @media only screen and (max-width: 1400px) {
   .g-recaptcha {

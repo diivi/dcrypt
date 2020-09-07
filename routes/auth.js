@@ -51,11 +51,11 @@ router.post("/register", contentSecurity, async (req, res) => {
   const hashed = await bcrypt.hash(req.body.password, salt);
 
   const team = new Team({
-    school: req.body.school,
-    email: req.body.email,
+    school: req.body.school.trim(),
+    email: req.body.email.trim(),
     password: hashed,
-    discord: req.body.discord,
-    name: req.body.name,
+    discord: req.body.discord.trim(),
+    name: req.body.name.trim(),
   });
   try {
     const registered = await team.save();

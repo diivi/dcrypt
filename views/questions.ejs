@@ -1,6 +1,53 @@
 <%- include('headerin'); -%>
 <div id="questionz">
   <h1 class="heading">Questions</h1>
+  <% if (Date.now() < new Date("Sep 7, 2020 22:00:00")) { %>
+  <h1 style="text-align: center; color: white">dCrypt Goes Live in :</h1>
+  <div class="countdown">
+    <div class="box">
+      <h2 id="days">0</h2>
+      <span>Days</span>
+    </div>
+    <div class="box">
+      <h2 id="hours">0</h2>
+
+      <span>Hours</span>
+    </div>
+    <div class="box">
+      <h2 id="minutes">0</h2>
+
+      <span>Minutes</span>
+    </div>
+    <div class="box">
+      <h2 id="seconds">0</h2>
+
+      <span>Seconds</span>
+    </div>
+  </div>
+  <script>
+    window.onload = function () {
+      var countDownDate = new Date("Sep 7, 2020 22:00:00").getTime();
+
+      var x = setInterval(function () {
+        var now = new Date().getTime();
+
+        var distance = countDownDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+      }, 1000);
+    };
+  </script>
+  <% } else { %>
   <div class="questions">
     <% locals.questions.forEach( function (element){ %>
     <div <% if (locals.team.questions.includes(element.title)) { %>
@@ -69,5 +116,5 @@
       document.getElementById(id).style.display = "none";
     }
   </script>
-  <%- include('footer'); -%>
+  <% }%> <%- include('footer'); -%>
 </div>
