@@ -722,7 +722,7 @@ img {
 .fp {
   border-radius: 14px 0px 0px 14px;
 }
-.bp {
+.dp {
   border-radius: 0px 14px 14px 0px;
 }
 .bp:before {

@@ -14,7 +14,7 @@
         <h1>Battle Points</h1>
         <h1 class="numbr"><%- locals.team.bp %></h1>
       </div>
-      <div class="bp">
+      <div class="bp dp">
         <h1>Defense Points</h1>
         <h1 class="numbr"><%- locals.team.dp %></h1>
       </div>
@@ -22,8 +22,24 @@
     <div class="right">
       <div class="powerup">
         <h1>Active Powerup</h1>
+        <% if (locals.team.shield===true) { %>
         <img src="/images/shield.svg" alt="" />
-        <h3>17 min</h3>
+        <% } else if(locals.team.multiplier===true){ %>
+        <img src="/images/multiplier.svg" alt="" />
+        <% } else if (locals.team.dpVisible===true) { %>
+        <img src="/images/dpshow.svg" alt="" />
+        <% } else if (locals.team.halfPrice===true) { %>
+        <img src="/images/discount.svg" alt="" />
+        <% } else { %>
+          <h1>None</h1>
+        <% } %> 
+          <% if (locals.team.shield===true  || locals.team.multiplier===true ||locals.team.dpVisible===true) { %>
+           <h3><%- locals.team.powerupTimer %>min</h3>
+          <% } else if (locals.team.halfPrice===true) {%>
+            <h3><%- locals.team.discountsLeft %> left</h3>
+          <%} else {%>
+            <h3 ><a style="color:#f10000;text-decoration: none;" href="/shop">Buy Some</a></h3>
+            <%}%>
       </div>
       <div class="yaar">
         <h1>Cooldowns</h1>
