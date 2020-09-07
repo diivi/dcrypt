@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 var helmet = require("helmet");
+var RateLimit = require("express-rate-limit");
+var MongoStore = require("rate-limit-mongo");
 
 const powerupManager = require("./jobs/powerups");
 powerupManager.start();
@@ -51,22 +53,32 @@ app.use(helmet());
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use("/", authRoute);
+var limiter = new RateLimit({
+  store: new MongoStore({
+    uri: process.env.MONGO_URI,
+    expireTimeMs: 60 * 1000 * 60,
+  }),
+  max: 150,
+  windowMs: 10 * 60 * 1000,
+  message: "Too many requests in a short duration, IP Banned for an hour.",
+});
+
+app.use("/",limiter, authRoute);
 app.use("/", dashRoute);
 app.use("/", boardRoute);
 app.use("/", attackRoute);
 app.use("/", makerRoute);
 app.use("/", admin);
-app.use("/", questionRoute);
+app.use("/",limiter, questionRoute);
 app.use("/", shopRoute);
-app.use("/", buyRoute);
+app.use("/",limiter, buyRoute);
 app.use("/", defRoute);
 
 app.get("/", contentSecurity, (req, res) => {
   res.render("index.ejs", { active: "home" });
 });
 
-app.get("/register", contentSecurity, (req, res) => {
+app.get("/register", limiter, contentSecurity, (req, res) => {
   res.render("register.ejs", { active: "register" });
 });
 

@@ -17,6 +17,7 @@
         required
         value="<% if (locals.original){ %><%- locals.original.email %><% } %>"
         placeholder="Email"
+        autocomplete="off"
       />
       <%if (locals.errors) { %> <%if (locals.errors.includes("email")) { %>
       <div class="error email">Please enter a valid email address</div>
@@ -28,6 +29,7 @@
         required
         value="<% if (locals.original){ %><%- locals.original.password %><% } %>"
         placeholder="Password"
+        autocomplete="off"
       />
       <%if (locals.errors) { %> <%if (locals.errors.includes("password")) { %>
       <div class="error password">
@@ -41,6 +43,7 @@
         required
         value="<% if (locals.original){ %><%- locals.original.school %><% } %>"
         placeholder="School Name"
+        autocomplete="off"
       />
       <%if (locals.errors) { %> <%if (locals.errors.includes("school")) { %>
       <div class="error school">School name can not exceed 30 characters</div>
@@ -52,6 +55,7 @@
         required
         value="<% if (locals.original){ %><%- locals.original.name %><% } %>"
         placeholder="Name"
+        autocomplete="off"
       />
       <%if (locals.errors) { %> <%if (locals.errors.includes("name")) { %>
       <div class="error name">Max length for name can be 20 characters</div>
@@ -63,6 +67,7 @@
         required
         value="<% if (locals.original){ %><%- locals.original.discord %><% } %>"
         placeholder="Discord ID"
+        autocomplete="off"
       />
       <%if (locals.errors) { %> <%if (locals.errors.includes("discord")) { %>
       <div class="error discord">Please enter a legitimate Discord ID</div>

@@ -6,8 +6,20 @@
   <div class="ib-child">
     <form action="/login" method="post" class="loginform">
       <h1>Login</h1>
-      <input type="email" name="email" required placeholder="Email" />
-      <input type="password" name="password" required placeholder="Password" />
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Email"
+        autocomplete="off"
+      />
+      <input
+        type="password"
+        name="password"
+        required
+        placeholder="Password"
+        autocomplete="off"
+      />
       <% if (locals.failure) { %>
       <p class="error">Could not find a user with the given credentials.</p>
       <% } %> <% if (locals.passed) { %>
