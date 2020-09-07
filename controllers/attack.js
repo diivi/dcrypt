@@ -14,7 +14,11 @@ router.post("/attack", verify, async (req, res) => {
     Team.updateOne(
       { email: defender.email },
       {
-        $set: { dp: defender.dp - totalAttack, fp: parseInt(defender.fp / 2) },
+        $set: {
+          dp: defender.dp - totalAttack,
+          fp: parseInt(defender.fp / 2),
+          defenseCooldown: 60,
+        },  
       },
       { multi: true },
       callback
@@ -32,6 +36,7 @@ router.post("/attack", verify, async (req, res) => {
           "troops.aircrafts": -req.body.aircraft,
           "troops.tanks": -req.body.tank,
           fp: parseInt(defender.fp / 2),
+          attackCooldown: 60,
         },
       },
       { multi: true },
@@ -47,7 +52,10 @@ router.post("/attack", verify, async (req, res) => {
     //!Failure
     Team.updateOne(
       { email: req.team.email },
-      { $inc: { "troops.soldiers": -req.body.soldier } },
+      {
+        $inc: { "troops.soldiers": -req.body.soldier },
+        $set: { attackCooldown: 30 },
+      },
       { multi: true },
       attackcallback
     );
@@ -57,9 +65,9 @@ router.post("/attack", verify, async (req, res) => {
       }
     }
     Team.updateOne(
-      { school: defender.school },
+      { email: defender.email },
       {
-        $set: { dp: defender.dp - totalAttack },
+        $set: { dp: defender.dp - totalAttack, defenseCooldown: 60 },
       },
       { multi: true },
       callback

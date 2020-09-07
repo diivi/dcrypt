@@ -498,7 +498,8 @@ span {
   background-color: red;
   cursor: pointer;
 }
-.shop {
+.shop,
+.dashboard {
   padding: 10vh 5%;
 }
 .top {
@@ -695,7 +696,350 @@ img {
   z-index: 1;
   cursor: pointer;
 }
+.top h1 {
+  color: white;
+  font-weight: 400;
+  display: inline-block;
+}
+.top {
+  margin-top: 2%;
+}
+.top h1:nth-child(2) {
+  float: right;
+}
+.dashrow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0%;
+}
+.points {
+  display: flex;
+  height: 12vw;
+  margin-top: 2%;
+  border-radius: 14px;
+  flex: 0 1 50%;
+}
+.fp {
+  border-radius: 14px 0px 0px 14px;
+}
+.bp {
+  border-radius: 0px 14px 14px 0px;
+}
+.bp:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 1px; /* or 100px */
+  border-left: 1px solid white;
+}
+.points div {
+  flex: 0 1 50%;
+  background-color: #191919;
+  position: relative;
+  padding: 5% 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.points h1:not(.numbr) {
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.5vw;
+}
+.numbr {
+  font-size: 2.5vw;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+
+.barracks h1 {
+  font-size: 2.4vw;
+  font-weight: 500;
+  color: white;
+  text-align: start;
+}
+
+.dashrow > div + div {
+  margin-left: 4%;
+}
+.dashrow + .dashrow {
+  margin-top: 2%;
+}
+.barracks {
+  flex: 1 1 50%;
+  background-color: #191919;
+  position: relative;
+  padding: 2% 1%;
+  border-radius: 14px;
+}
+.barracks h1 {
+  margin-bottom: 5%;
+}
+.barracks .row {
+  padding: 0px 20px;
+}
+.barracks .inventroop {
+  min-height: 0px;
+  padding: 2.5% 1%;
+  min-width: 23%;
+}
+.barracks .inventroop p {
+  font-size: 1.2vw;
+}
+.barracks .inventroop p + p {
+  margin-top: 20px;
+  font-size: 2vw;
+}
+.barracks img {
+  width: 3vw;
+}
+.barracks h1 {
+  margin-left: 20px;
+}
+.barracks .number-input {
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  margin-top: 0%;
+  transform: translateY(0%);
+}
+.barracks h3 {
+  color: white;
+}
+.barracks input[type="submit"] {
+  border: none;
+  outline: none;
+  background: #9d1111;
+  border-radius: 14px;
+  font-family: "Red Hat Display";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  padding: 0.6vw 3vw;
+  color: #ffffff;
+  z-index: 1;
+  cursor: pointer;
+}
+.dashboard .number-input button {
+  outline: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 5rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+.barracks .middle h3 {
+  margin-bottom: 0px;
+  font-size: 1rem;
+}
+.right {
+  display: flex;
+  height: 12vw;
+  margin-top: 2%;
+  border-radius: 14px;
+  flex: 0 1 50%;
+  justify-content: space-evenly;
+}
+.right .points {
+  margin-top: 0%;
+  flex: 1 1 60%;
+}
+.powerup {
+  display: flex;
+  border-radius: 14px;
+  flex: 1 1 40%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  background-color: #191919;
+  padding: 2% 1%;
+  border-radius: 14px;
+  text-align: center;
+}
+.right > div + div {
+  margin-left: 5%;
+}
+.powerup img {
+  height: 50%;
+}
+.powerup h1 {
+  font-size: 1.5vw;
+}
+.powerup h3 {
+  color: #f10000;
+  font-size: 1.2vw;
+  font-weight: 400;
+}
+.yaar {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  flex: 0 1 50%;
+  background-color: #191919;
+  position: relative;
+  justify-content: space-evenly;
+}
+.yaar h1 {
+  font-size: 1.2vw;
+  color: white;
+  text-align: center;
+  margin-top: 2.5%;
+}
+.yaar .points {
+  height: auto;
+}
+.yaar > h1 {
+  font-size: 1.5vw;
+  margin-top: 5%;
+}
+.yaar .bp,
+.yaar .fp {
+  padding: 5% 0%;
+}
+.yaar .fp h1,
+.yaar .bp h1 {
+  font-size: 1.5vw;
+}
+.barracks .inputz {
+  padding: 0px;
+}
+.number-input input[type="number"] {
+  font-family: "Red Hat Display";
+  max-width: 5rem;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  height: auto;
+  padding: 0.3rem;
+}
+.barracks form {
+  padding: 0% 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+.barracks input[type="submit"] {
+  width: 33.33%;
+}
+.barracks:nth-child(2) {
+  padding: 0px;
+}
+@media only screen and (max-width: 1400px) {
+  .barracks form {
+    padding: 0px 20px;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
+  .top {
+    margin-top: 5%;
+  }
+  .barracks form h1 {
+    font-size: 8vw;
+  }
+  .inputz {
+    margin-top: 10%;
+  }
+  .barracks input[type="submit"] {
+    margin: 10% 0%;
+    font-size: 18px;
+    padding: 2vw 3vw;
+  }
+  .last {
+    width: 100%;
+  }
+  .last .middle {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .points h1 + h1 {
+    margin-top: 20%;
+  }
+  .points h1:not(.numbr) {
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    font-size: 3.8vw;
+  }
+  .yaar {
+    margin-left: 5% !important;
+  }
+  .yaar > h1 {
+    font-size: 5vw;
+  }
+  .powerup h3 {
+    font-size: 4vw;
+    font-weight: 500;
+  }
+  .powerup h1 {
+    font-size: 4vw;
+    margin-top: -8%;
+  }
+  .dashrow + .dashrow {
+    margin-top: 5%;
+  }
+  .inventroop p {
+    font-size: 3vw !important;
+  }
+  .inventroop {
+    margin-bottom: 5%;
+  }
+  .barracks img {
+    width: 8vw;
+  }
+  .barracks h1 {
+    font-size: 5vw;
+    margin-top: 5%;
+  }
+  .barracks + .barracks {
+    margin-top: 5%;
+  }
+  .yaar h1 + h1 {
+    margin-top: 0px;
+    font-size: 4vw !important;
+  }
+  .yaar .bp,
+  .yaar .fp {
+    padding: 15% 0%;
+  }
+  .numbr {
+    font-size: 6vw;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+  }
+  .top h1 {
+    font-size: 5vw;
+    width: 40%;
+  }
+  .top {
+    height: auto;
+  }
+  .dashrow {
+    flex-wrap: wrap;
+  }
+  .points,
+  .right {
+    flex: 0 0 100%;
+    height: auto;
+    margin-top: 5%;
+  }
+  .dashrow div + div {
+    margin-left: 0px;
+  }
+  .barracks .inventroop p + p {
+    margin-top: 0px;
+  }
   .sidebyside {
     display: flex;
     width: 100%;

@@ -234,7 +234,7 @@
             </div>
           </div>
         </div>
-        <h3>Double the attack stat of your troops for 1 hour.</h3>
+        <h3>Increase the attack stat of your troops by 1.5x for 1 hour.</h3>
       </div>
       <div class="shopitem">
         <h1>Shield</h1>
@@ -376,76 +376,33 @@
           alert("Only one powerup can be active at a time!");
         };
     <% }} %>
-    function solUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
-      kaise == "change"
-        ? (total += document.querySelector(".soldier").value * 100)
-        : kaise == "plus"
-        ? (total += 100)
-        : (total -= 100);
-      if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct .oneform").innerText = total;
-      }
-    }
-    document.querySelector(".minussol").addEventListener("click", () => {
-      solUpdate("minus");
-    });
-    document.querySelector(".plus.sol").addEventListener("click", () => {
-      solUpdate("plus");
-    });
-    function airUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
-      kaise == "change"
-        ? (total = document.querySelector(".aircraft").value * 250)
-        : kaise == "plus"
-        ? (total += 250)
-        : (total -= 250);
-      if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct .oneform").innerText = total;
-      }
-    }
-    document.querySelector(".minusair").addEventListener("click", () => {
-      airUpdate("minus");
-    });
-    document.querySelector(".plus.air").addEventListener("click", () => {
-      airUpdate("plus");
-    });
-
-    function bombUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
-      kaise == "change"
-        ? (total = document.querySelector(".bomber").value * 250)
-        : kaise == "plus"
-        ? (total += 250)
-        : (total -= 250);
-      if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct .oneform").innerText = total;
-      }
-    }
-    document.querySelector(".minusbomb").addEventListener("click", () => {
-      bombUpdate("minus");
-    });
-    document.querySelector(".plus.bomb").addEventListener("click", () => {
-      bombUpdate("plus");
-    });
-
-    function tankUpdate(kaise) {
-      var total = parseInt(document.querySelector(".deduct .oneform").innerText);
-      kaise == "change"
-        ? (total = document.querySelector(".tank").value * 400)
-        : kaise == "plus"
-        ? (total += 400)
-        : (total -= 400);
-      if (total >= 0 && total <= 10000) {
-        document.querySelector(".deduct .oneform").innerText = total;
-      }
-    }
-    document.querySelector(".minustank").addEventListener("click", () => {
-      tankUpdate("minus");
-    });
-    document.querySelector(".plus.tank").addEventListener("click", () => {
-      tankUpdate("plus");
-    });
+            function multiUpdate1() {
+             document.querySelector(".deduct .oneform").innerText = parseInt(document.querySelector(".soldier").value) * 100 + parseInt(document.querySelector(".tank").value) * 400 + parseInt(document.querySelector(".bomber").value) * 250+ parseInt(document.querySelector(".aircraft").value) * 250;
+            }
+          document.querySelector(".minussol").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".plus.sol").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".minusbomb").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".plus.bomb").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".minustank").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".plus.tank").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".minusair").addEventListener("click", () => {
+            multiUpdate1();
+          });
+          document.querySelector(".plus.air").addEventListener("click", () => {
+            multiUpdate1();
+          });
 
         function multiUpdate() {
           document.querySelector(".deduct .twoform").innerText =document.querySelector(".multiplier").value * 1000 + document.querySelector(".shield").value * 1000 + document.querySelector(".half").value * 1000+ document.querySelector(".dp").value * 1000

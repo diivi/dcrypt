@@ -1,8 +1,149 @@
-<%- include('headerin'); -%><% if (locals.success ==='true') { %>
-<h1 style="color: green">Attack Successful!</h1>
-<% }else if(locals.success ==='false') { %>
-<h1 color="red">Attack Unsuccessful!</h1>
-<% } %>
-<h1><%- locals.team.name %></h1>
-
-<%- include('footer'); -%>
+<%- include('headerin'); -%>
+<div class="dashboard">
+  <div class="top">
+    <h1><%- locals.team.name.trim() %>, <%- locals.team.school.trim() %></h1>
+    <% if (locals.success ==='true') { %>
+    <h1 style="color: green">Attack Successful!</h1>
+    <% }else if(locals.success ==='false') { %>
+    <h1 style="color:red">Attack Unsuccessful!</h1>
+    <% } else if(locals.success ==='allot'){ %>
+    <h1 style="color:red">Please select atleast one troop!</h1>
+    <% }%>
+  </div>
+  <div class="dashrow">
+    <div class="points">
+      <div class="fp">
+        <h1>Flag Points</h1>
+        <h1 class="numbr"><%- locals.team.fp %></h1>
+      </div>
+      <div class="bp">
+        <h1>Battle Points</h1>
+        <h1 class="numbr"><%- locals.team.bp %></h1>
+      </div>
+      <div class="bp">
+        <h1>Defense Points</h1>
+        <h1 class="numbr"><%- locals.team.dp %></h1>
+      </div>
+    </div>
+    <div class="right">
+      <div class="powerup">
+        <h1>Active Powerup</h1>
+        <img src="/images/shield.svg" alt="" />
+        <h3>17 min</h3>
+      </div>
+      <div class="yaar">
+        <h1>Cooldowns</h1>
+        <div class="points">
+          <div class="fp">
+            <h1>Attack</h1>
+            <h1 class="numbr"><%- locals.team.attackCooldown %>m</h1>
+          </div>
+          <div class="bp">
+            <h1>Defense</h1>
+            <h1 class="numbr"><%- locals.team.defenseCooldown %>m</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="dashrow">
+      <div class="barracks">
+        <h1>Barracks</h1>
+        <div class="row">
+          <div class="soldiers inventroop">
+            <p>Soliders</p>
+            <p><%= locals.team.troops.soldiers %></p>
+            <img src="/images/soldier.svg" alt="" />
+          </div>
+          <div class="aircrafts inventroop">
+            <p>Bombers</p>
+            <p><%= locals.team.troops.aircrafts %></p>
+            <img src="/images/bomber.svg" alt="" />
+          </div>
+          <div class="tanks inventroop">
+            <p>Tanks</p>
+            <p><%= locals.team.troops.tanks %></p>
+            <img src="/images/tank.svg" alt="" />
+          </div>
+          <div class="tanks inventroop">
+            <p>A.A.G</p>
+            <p><%= locals.team.troops.bombers %></p>
+            <img style="" src="/images/aag.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="barracks">
+        <form action="/defense" method="POST" class="attack">
+          <h1 style="text-align: center;margin-left:0px">Defense</h1>
+      
+          <div class="inputz">
+            <div class="number-input">
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                class="minussol"></button>
+              <div class="middle">
+                <h3>Soldiers</h3>
+                <input class="quantity soldier" min="0" name="soldier" value="0" type="number"
+                  max="<%= locals.team.troops.soldiers %>" />
+              </div>
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                class="plus sol"></button>
+            </div>
+            <div class="number-input">
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                class="minusbomb"></button>
+              <div class="middle">
+                <h3>A.A.G</h3>
+                <input class="quantity bomber" min="0" name="bomber" value="0" type="number"
+                  max="<%= locals.team.troops.bombers %>" />
+              </div>
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                class="plus bomb"></button>
+            </div>
+            <div class="number-input">
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepDown()"
+                class="minustank"></button>
+              <div class="middle">
+                <h3 style="text-align: center">Tanks</h3>
+                <input class="quantity tank" min="0" name="tank" value="0" type="number"
+                  max="<%= locals.team.troops.tanks %>" />
+              </div>
+              <button type="button" onclick="this.parentNode.querySelector('input[type=number').stepUp()"
+                class="plus tank"></button>
+            </div>
+            <div class="number-input last">
+              <div class="middle">
+                <h3>Total</h3>
+                <input class="quantity total" min="0" name="total" value="0" type="number" max="100000" />
+              </div>
+            </div>
+          </div>
+          <input type="submit" value="Allot" style="margin-left: 50%; transform: translateX(-50%)" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function multiUpdate() {
+      document.querySelector(".total").value = parseInt(document.querySelector(".soldier").value) * 100 + parseInt(document.querySelector(".tank").value) * 400 + parseInt(document.querySelector(".bomber").value) * 250 ;
+    }
+    document.querySelector(".minussol").addEventListener("click", () => {
+      multiUpdate();
+    });
+    document.querySelector(".plus.sol").addEventListener("click", () => {
+      multiUpdate();
+    });
+    document.querySelector(".minustank").addEventListener("click", () => {
+      multiUpdate();
+    });
+    document.querySelector(".plus.tank").addEventListener("click", () => {
+      multiUpdate();
+    });
+    document.querySelector(".minusbomb").addEventListener("click", () => {
+      multiUpdate();
+    });
+    document.querySelector(".plus.bomb").addEventListener("click", () => {
+      multiUpdate();
+    });
+  </script>
+  <%- include('footer'); -%>
+</div>

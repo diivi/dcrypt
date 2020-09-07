@@ -34,7 +34,7 @@
             <% if (locals.team.dpVisible===true) { %>
             <td><%- element.dp %></td>
             <% } %>
-    <% if (element.shield===false){ %>
+    <% if (element.shield===false&&element.defenseCooldown===0&&locals.team.attackCooldown===0){ %>
     <td class='atkcol'>
       <span class='atkbtn' onclick="openModal('<%- element.name %>')">Attack</span>
     </td>
@@ -47,7 +47,7 @@
 </table>
 </div>
 <% locals.allteams.forEach( function (element){ %> <% if
-(((element._id).toString()!==(locals.team._id).toString()) && element.shield===false ) { %>
+(((element._id).toString()!==(locals.team._id).toString()) && element.shield===false&&element.defenseCooldown===0&&locals.team.attackCooldown===0){ %>
 <div id="<%= element.name %>" class="mymodal">
       <h1>
         Attacking <%= element.name %>

@@ -167,4 +167,3 @@ router.post("/powerup", verify, async (req, res) => {
 });
 
 module.exports = router;
-//todo:dashboard;max 10 items add karo per shopitem to price

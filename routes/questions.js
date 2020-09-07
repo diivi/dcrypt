@@ -13,7 +13,7 @@ router.get("/questions", contentSecurity, verify, (req, res) => {
       }
       res.render("questions.ejs", {
         team: req.team,
-        curr:req.query.question,
+        curr: req.query.question,
         questions: docs,
         active: "questions",
       });
@@ -27,26 +27,18 @@ router.post("/answer", verify, async (req, res) => {
     console.log(err);
   });
   if (!question) {
-    res.redirect("/questions/?question="+req.body.title);
+    res.redirect("/questions/?question=" + req.body.title);
   } else if (question) {
     Team.updateOne(
       { _id: req.team._id },
-      { $push: { questions: question.title } },
+      {
+        $push: { questions: question.title },
+        $inc: { bp: question.points, fp: 500 },
+      },
       { multi: true },
       answercallback
     );
-    Team.updateOne(
-      { email: req.team.email },
-      { $inc: { bp: question.points, fp: 500 } },
-      { multi: true },
-      pointscallback
-    );
     function answercallback(err, num) {
-      if (err) {
-        console.log(err);
-      }
-    }
-    function pointscallback(err, num) {
       if (err) {
         console.log(err);
       }

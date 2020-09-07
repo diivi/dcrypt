@@ -10,6 +10,7 @@ const teamSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -88,10 +89,18 @@ const teamSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  discountsLeft:{
+  discountsLeft: {
     type: Number,
-    default:0
-  }
+    default: 0,
+  },
+  attackCooldown: {
+    type: Number,
+    default: 0,
+  },
+  defenseCooldown: {
+    type: Number,
+    default: 0,
+  },
 });
 
 teamSchema.pre("updateOne", function (next) {
