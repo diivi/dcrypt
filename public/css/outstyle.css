@@ -147,7 +147,7 @@ form h1 {
 nav {
   height: 10vh;
   width: 100%;
-  background-color: #151515;
+  background-color: #1d1d1d;
   position: absolute;
   z-index: 1;
 }
@@ -214,14 +214,13 @@ h1 {
   font-family: fcsq, "sans-serif";
   font-style: normal;
   font-weight: 500;
-  font-size: 140px;
+  font-size: 120px;
   line-height: 140px;
-  color: #ff1100;
+  color: #f10000;
   margin: 0% 0% 5% 0%;
 }
 .info {
-  width: 100%;
-  font-weight: 500;
+  width: 90%;
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
@@ -234,7 +233,7 @@ h1 {
   height: 46px;
   border: none;
   outline: none;
-  background: #e41406;
+  background: #f10000;
   border-radius: 8px;
   font-family: "Red Hat Display";
   font-style: normal;
@@ -250,7 +249,7 @@ h1 {
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 64px;
+  font-size: 48px;
   line-height: 77px;
   margin: 0px 0px 2vw 0px;
   color: #ffffff;
@@ -267,8 +266,8 @@ th {
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 24px;
+  line-height: 24px;
   color: #ffffff;
   background-color: #101010;
 }
@@ -277,8 +276,8 @@ td {
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 24px;
+  line-height: 24px;
   color: #ffffff;
 }
 table {

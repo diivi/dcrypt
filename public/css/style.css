@@ -26,7 +26,7 @@ body {
 nav {
   height: 10vh;
   width: 100%;
-  background-color: #151515;
+  background-color: #1d1d1d;
   position: absolute;
   z-index: 1;
 }
@@ -137,8 +137,8 @@ table {
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 64px;
-  line-height: 77px;
+  font-size: 48px;
+  line-height: 48px;
 
   color: #ffffff;
 }
@@ -162,7 +162,7 @@ table {
   transform: translate(-50%, -50%);
   font-style: normal;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 48px;
   width: 100%;
   color: #ffffff;
@@ -540,7 +540,7 @@ span {
 }
 
 .swactive {
-  background-color: #d20000 !important;
+  background-color: #f10000 !important;
 }
 .swactive p {
   color: white;
@@ -626,7 +626,7 @@ span {
 }
 .shopitem h1 {
   text-align: center;
-  color: #d20000;
+  color: #f10000;
 }
 .side {
   display: flex;
@@ -695,7 +695,7 @@ img {
 }
 .top h1 {
   color: white;
-  font-weight: 400;
+  font-weight: 500;
   display: inline-block;
 }
 .top {
@@ -811,12 +811,12 @@ img {
 .barracks input[type="submit"] {
   border: none;
   outline: none;
-  background: #9d1111;
+  background: #f10000;
   border-radius: 14px;
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 20px;
   padding: 0.6vw 3vw;
   color: #ffffff;
   z-index: 1;
@@ -926,7 +926,8 @@ img {
   height: 100%;
 }
 .barracks input[type="submit"] {
-  width: 33.33%;
+  width: 25%;
+  height: 15%;
 }
 .barracks:nth-child(2) {
   padding: 0px;
