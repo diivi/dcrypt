@@ -7,25 +7,11 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 var original = {};
 const { body } = require("express-validator");
-var RateLimit = require("express-rate-limit");
-var MongoStore = require("rate-limit-mongo");
-var limiter = new RateLimit({
-  store: new MongoStore({
-    uri: process.env.MONGO_URI,
-    expireTimeMs: 60 * 1000 * 60,
-    collection: "expressRateRecords",
-  }),
-  max: 20,
-  windowMs: 60 * 1000,
-  message: "Too many requests in a short duration, IP Banned for an hour.",
-});
 
 router.post(
   "/register",
-  limiter,
   [body("name").trim().escape(), body("school").trim().escape()],
   async (req, res) => {
-    console.log(req.body);
     var { error } = validateTeam(req.body);
     if (error) {
       original = error._original;
@@ -84,7 +70,7 @@ router.post(
   }
 );
 
-router.post("/login",limiter, async (req, res) => {
+router.post("/login", async (req, res) => {
   const team = await Team.findOne({ email: req.body.email });
   if (!team) return res.render("login.ejs", { failure: true, active: "login" });
 
