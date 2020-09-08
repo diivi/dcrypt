@@ -113,8 +113,8 @@ td {
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 1.4vw;
+  line-height: 2.5vw;
   color: #ffffff;
 }
 table {
@@ -1282,4 +1282,15 @@ img {
     border-radius: 12px;
     background-color: red;
   }
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 10px 150px #111;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e10000;
+  border-radius: 4px;
+}
+::-webkit-scrollbar {
+  width: 5px;
 }

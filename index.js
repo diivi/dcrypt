@@ -3,8 +3,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 var helmet = require("helmet");
-var RateLimit = require("express-rate-limit");
-var MongoStore = require("rate-limit-mongo");
+
 
 const powerupManager = require("./jobs/powerups");
 powerupManager.start();
@@ -25,7 +24,6 @@ const defRoute = require("./controllers/defense");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const contentSecurity = require("./middleware/contentSecurity");
 
 const port = 5000 || process.env.PORT;
 
@@ -48,45 +46,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-var limiter = new RateLimit({
-  store: new MongoStore({
-    uri: process.env.MONGO_URI,
-    expireTimeMs: 60 * 1000 * 60,
-  }),
-  max: 150,
-  windowMs: 10 * 60 * 1000,
-  message: "Too many requests in a short duration, IP Banned for an hour.",
-});
 
-app.use("/",limiter, authRoute);
+
+app.use("/", authRoute);
 app.use("/", dashRoute);
 app.use("/", boardRoute);
 app.use("/", attackRoute);
 app.use("/", makerRoute);
 app.use("/", admin);
-app.use("/",limiter, questionRoute);
+app.use("/",  questionRoute);
 app.use("/", shopRoute);
-app.use("/",limiter, buyRoute);
+app.use("/", buyRoute);
 app.use("/", defRoute);
 
-app.get("/", contentSecurity, (req, res) => {
+app.get("/", (req, res) => {
   res.render("index.ejs", { active: "home" });
 });
 
-app.get("/register", limiter, contentSecurity, (req, res) => {
+app.get("/register",   (req, res) => {
   res.render("register.ejs", { active: "register" });
 });
 
-app.get("/login", contentSecurity, (req, res) => {
+app.get("/login",  (req, res) => {
   res.render("login.ejs", { active: "login" });
 });
 
-app.get("*", contentSecurity, function (req, res) {
+app.get("*",  function (req, res) {
   res.status(404).render("404.ejs");
 });
 

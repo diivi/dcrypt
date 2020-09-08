@@ -3,9 +3,10 @@ const verify = require("../middleware/tokenVerification");
 const Questions = require("../models/Questions");
 const Team = require("../models/Team");
 const Log = require("../models/Log");
-const contentSecurity = require("../middleware/contentSecurity");
+var RateLimit = require("express-rate-limit");
+var MongoStore = require("rate-limit-mongo");
 
-router.get("/questions", contentSecurity, verify, (req, res) => {
+router.get("/questions",  verify, (req, res) => {
   Questions.find({})
     .sort({ qnum: "asc" })
     .exec(function (err, docs) {
@@ -20,7 +21,19 @@ router.get("/questions", contentSecurity, verify, (req, res) => {
       });
     });
 });
-router.post("/answer", verify, async (req, res) => {
+
+var limiter = new RateLimit({
+  store: new MongoStore({
+    uri: process.env.MONGO_URI,
+    expireTimeMs: 60 * 1000 * 60,
+    collection: 'expressRateRecords',
+  }),
+  max: 20,
+  windowMs: 60 * 1000,
+  message: "Too many requests in a short duration, IP Banned for an hour.",
+});
+
+router.post("/answer", limiter , verify, async (req, res) => {
   const activity = new Log({
     qtitle: req.body.title,
     sol: req.body.ans,

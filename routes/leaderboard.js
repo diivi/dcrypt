@@ -1,9 +1,8 @@
 const router = require("express").Router();
 const verify = require("../middleware/tokenVerification");
-const contentSecurity = require("../middleware/contentSecurity");
 const Team = require("../models/Team");
 
-router.get("/leaderboard", contentSecurity, verify, (req, res) => {
+router.get("/leaderboard", verify, (req, res) => {
   var success = req.query.success;
   Team.find({})
     .sort({ fp: "desc" })
@@ -20,7 +19,7 @@ router.get("/leaderboard", contentSecurity, verify, (req, res) => {
     });
 });
 
-router.get("/leaderboardout", contentSecurity, (req, res) => {
+router.get("/leaderboardout",  (req, res) => {
   Team.find({})
     .sort({ fp: "desc" })
     .exec(function (err, docs) {
