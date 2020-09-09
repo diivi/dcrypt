@@ -28,8 +28,8 @@ nav {
   width: 100%;
   background-color: #1d1d1d;
   position: absolute;
-  z-index: 1;
 }
+
 .navlogo {
   height: 50%;
   top: 25%;
@@ -223,7 +223,8 @@ table {
 }
 .attacher {
   position: relative;
-  margin: 0px 0px 30px 0px;
+  margin-top: -124px;
+  margin-bottom: 124px;
   float: left;
   clear: both;
   border: none;
@@ -258,8 +259,11 @@ table {
 
 .sidebyside {
   display: flex;
-  width: 100%;
-  position: relative;
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  bottom: 48px;
+  transform: translateX(-50%);
 }
 .sidebyside button {
   flex-grow: 1;
@@ -301,6 +305,7 @@ table {
   padding: 0.6vw 2vw;
   color: #ffffff;
   z-index: 1;
+  cursor: pointer;
   cursor: pointer;
 }
 .atkcol {
@@ -400,7 +405,6 @@ input[type="number"]:focus {
   font-style: normal;
   font-weight: 500;
   font-size: 64px;
-  line-height: 77px;
   margin-bottom: 5%;
   color: #ffffff;
 }
@@ -461,6 +465,25 @@ input[type="number"]:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  -webkit-animation: flip 1s;
+  animation: flip 1s;
+}
+
+@-webkit-keyframes flip {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+@keyframes flip {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
 }
 .inventroop p + p {
   margin-top: 20px;
@@ -493,10 +516,6 @@ input[type="number"]:focus {
 .shopitem img {
   transform: scale(0.75);
   padding: 5%;
-}
-span {
-  background-color: red;
-  cursor: pointer;
 }
 .shop,
 .dashboard {
@@ -963,6 +982,10 @@ img {
   letter-spacing: 2px;
   background-color: transparent;
 }
+.blinkingCursor {
+  font-weight: lighter;
+  color: #9d1111;
+}
 @media only screen and (max-width: 1400px) {
   .barracks form {
     padding: 0px 20px;
@@ -978,6 +1001,9 @@ img {
 }
 
 @media only screen and (max-width: 1000px) {
+  .inventroop img {
+    width: 10vw;
+  }
   .top {
     margin-top: 5%;
   }
@@ -1155,11 +1181,14 @@ img {
   }
   .inventroop p + p {
     margin-top: 0px;
-    font-size: 32px;
+    font-size: 32px !important;
     line-height: 44px;
   }
   .inventroop p {
-    font-size: 18px;
+    font-size: 18px !important;
+  }
+  .mymodal {
+    position: absolute;
   }
   .mymodal .close {
     font-size: 5vw;

@@ -1,12 +1,12 @@
 var cron = require("node-cron");
 const Team = require("../models/Team");
 
-module.exports  = cron.schedule(
+module.exports = cron.schedule(
   "* * * * *",
   () => {
     Team.find({}, function (err, docs) {
       docs.forEach((element) => {
-        if (element.powerupTimer > 0) {
+        if (element.powerupTimer >= 1) {
           Team.updateOne(
             { email: element.email },
             {
@@ -42,6 +42,9 @@ module.exports  = cron.schedule(
           }
         }
       });
+      if (err) {
+        console.log(err);
+      }
     });
   },
   {

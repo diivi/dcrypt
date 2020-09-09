@@ -43,7 +43,7 @@
             <% } %>
     <% if (element.shield===false&&element.defenseCooldown===0&&locals.team.attackCooldown===0){ %>
     <td class='atkcol'>
-      <span class='atkbtn' onclick="openModal('<%- element.name %>')">Attack</span>
+      <span class='atkbtn att<%- allteams.indexOf(element) %>' onclick="openModal('<%- allteams.indexOf(element) %>')">Attack</span>
     </td>
     <% }else{ %>
       <td>
@@ -55,13 +55,12 @@
 </div>
 <% locals.allteams.forEach( function (element){ %> <% if
 (((element._id).toString()!==(locals.team._id).toString()) && element.shield===false&&element.defenseCooldown===0&&locals.team.attackCooldown===0){ %>
-<div id="<%= element.name %>" class="mymodal">
-      <h1>
-        Attacking <%= element.name %>
+<div id="pop<%= allteams.indexOf(element) %>" class="mymodal">
+      <h1 data-name="<%= element.name %>">
       </h1>
   <div class="twodivs">
   <div class="inventory">
-    <h1>Inventory</h1>
+    <h1 class="inv">Inventory</h1>
     <div class="row">
     <div class="soldiers inventroop">
       <p>Soliders</p>
@@ -83,8 +82,8 @@
       </div>
   <div class="deploy">
   <form action="/attack" method="POST" class="attack">
-    <h1>Deploy</h1>
-    <p class="close" onclick="closeModal('<%= element.name %>')">&#10060;</p>
+    <h1 class="dep">Deploy</h1>
+    <p class="close" onclick="closeModal('<%= allteams.indexOf(element) %>')">&#10060;</p>
 
       <input
         type="hidden"
@@ -171,21 +170,63 @@
 <% }}) %>
 <script
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-  defer
 ></script>
-
+<script src="/js/cta.min.js"></script>
+<script src="/js/tw.min.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript">
-  var top =0;
+    ScrollReveal({
+      reset:true,
+    }).reveal('tr',{
+      delay:50,
+    });
+
+  $(document).ready(function () {
+    $('.inv').hide()
+    $('.dep').hide()
+    $('.inputz').hide()
+  });
+
   function openModal(school) {
     $(".mymodal").each(function () {
       $(this).css({ display: "none" });
     });
-    document.getElementById(school).style.display = "block";
+      var e1 = document.querySelector('.'+'att'+school),
+      e2 = document.getElementById('pop'+school);
+    cta(e1, e2,{duration: 0.5, targetShowDuration:0.5, relativeToWindow:true},function (e2) {
+    e2.style.display = "block";
+      $('#'+$(e2).attr('id')+' .inv').fadeIn(500)
+      $('#' + $(e2).attr('id') + ' .dep').fadeIn(500)
+      $('#' + $(e2).attr('id') + ' .inputz').fadeIn(500)
+    var defSelect='#'+$(e2).attr('id') + ' > h1';
+        $(defSelect).typewrite({
+        actions: [
+          {type: 'Attacking '+ $(defSelect).attr('data-name')},
+        ],
+        speed:20,
+        cursor:"|"
+      });
+  //  $(invSelect).typewrite({
+  //     actions: [
+  //       {type: 'Inventory'},
+  //     ],
+  //     speed: 20,
+  //     showCursor:false
+  //   });
+  //     $(depSelect).typewrite({
+  //       actions: [
+  //         {type: 'Deploy'},
+  //       ],
+  //       speed: 12,
+  //       showCursor: false
+  //     });
+    });
   }
   function closeModal(school) {
     $(".mymodal").each(function () {
       $(this).css({ display: "none" });
     });
   }
+
 </script>
 <%- include('footer'); -%>

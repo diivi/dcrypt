@@ -52,18 +52,24 @@
     <% locals.questions.forEach( function (element){ %>
     <div <% if (locals.team.questions.includes(element.title)) { %>
       style="background:#9D1111;cursor:default" <% }else{ %>
-      onclick="openModal('<%- element.title %>')"<% }%> class="question" >
+      onclick="openModal('<%- locals.questions.indexOf(element) %>')"<% }%>
+      class="question ques<%- locals.questions.indexOf(element) %> " >
       <div class="qcontent">
         <p><%- element.title %></p>
         <p><%- element.points %></p>
       </div>
     </div>
     <% }) %> <% locals.questions.forEach( function (element){ %> <% if
-    (!locals.team.questions.includes(element.title)) { %> <div id="<%-
-    element.title %>" class="qmodal" <% if (locals.curr===element.title){ %>
-    style="display: block" <%}%>>
+    (!locals.team.questions.includes(element.title)) { %> <div id="pop<%-
+    locals.questions.indexOf(element) %>" class="qmodal" <% if
+    (locals.curr===element.title){ %> style="display: block" <%}%>>
     <form action="/answer" method="POST">
-      <p class="close" onclick="closeModal('<%= element.title %>')">&#10060;</p>
+      <p
+        class="close"
+        onclick="closeModal('<%= locals.questions.indexOf(element) %>')"
+      >
+        &#10060;
+      </p>
       <div class="qinfo">
         <p>
           <input
@@ -75,7 +81,9 @@
           />
         </p>
         <p class="qhead"><%- element.title %></p>
-        <p class="qtext"><%- element.question %></p>
+        <p class="qtext" style="margin-bottom: 144px">
+          <%- element.question %>
+        </p>
         <% if (element.attachment!=""){ %>
         <a
           class="attacher"
@@ -86,18 +94,26 @@
           <%- element.attachment %>
         </a>
         <% } %>
-        <div class="sidebyside">
-          <input type="text" name="ans" <% if (locals.curr===element.title){ %>
-          value="Incorrect" style="color:red;border:1px solid red"<%}%>/>
-          <button>Submit</button>
-        </div>
+      </div>
+      <div class="sidebyside">
+        <input type="text" name="ans" <% if (locals.curr===element.title){ %>
+        value="Incorrect" style="color:red;border:1px solid red" <%}%>/>
+        <button>Submit</button>
       </div>
     </form>
   </div>
   <% } }) %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  //
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="/js/cta.min.js"></script>
 
   <script>
+    // ScrollReveal({
+    //   reset: false,
+    // }).reveal(".question", {
+    //   delay: 50,
+    // });
     $(document).ready(function () {
       $('input[name = "ans"]').click(function (e) {
         e.preventDefault();
@@ -106,14 +122,18 @@
       });
     });
 
-    function openModal(id) {
+    function openModal(num) {
       $(".qmodal").each(function () {
         $(this).css({ display: "none" });
       });
-      document.getElementById(id).style.display = "block";
+      var e1 = document.querySelector("." + "ques" + num),
+        e2 = document.getElementById("pop" + num);
+      cta(e1, e2, { duration: 0.2, relativeToWindow: true }, function (e2) {
+        e2.style.display = "block";
+      });
     }
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
+    function closeModal(num) {
+      document.getElementById("pop" + num).style.display = "none";
     }
   </script>
   <% }%> <%- include('footer'); -%>
