@@ -23,13 +23,13 @@
       <div class="powerup">
         <h1>Active Powerup</h1>
         <% if (locals.team.shield===true) { %>
-        <img src="/images/shield.svg" alt="" />
+        <img src="/images/shield.svg" alt="shield" />
         <% } else if(locals.team.multiplier===true){ %>
-        <img src="/images/multiplier.svg" alt="" />
+        <img src="/images/multiplier.svg" alt="multiplier" />
         <% } else if (locals.team.dpVisible===true) { %>
-        <img src="/images/dpshow.svg" alt="" />
+        <img src="/images/dpshow.svg" alt="dpvisible" />
         <% } else if (locals.team.halfPrice===true) { %>
-        <img src="/images/discount.svg" alt="" />
+        <img src="/images/discount.svg" alt="halfprice" />
         <% } else { %>
           <h1>None</h1>
         <% } %> 
@@ -63,22 +63,22 @@
           <div class="soldiers inventroop">
             <p>Soliders</p>
             <p><%= locals.team.troops.soldiers %></p>
-            <img src="/images/soldier.svg" alt="" />
+            <img src="/images/soldier.svg" alt="soldier" />
           </div>
           <div class="aircrafts inventroop">
             <p>Bombers</p>
             <p><%= locals.team.troops.aircrafts %></p>
-            <img src="/images/bomber.svg" alt="" />
+            <img src="/images/bomber.svg" alt="bomber" />
           </div>
           <div class="tanks inventroop">
             <p>Tanks</p>
             <p><%= locals.team.troops.tanks %></p>
-            <img src="/images/tank.svg" alt="" />
+            <img src="/images/tank.svg" alt="tanks" />
           </div>
           <div class="tanks inventroop">
             <p>A.A.G</p>
             <p><%= locals.team.troops.bombers %></p>
-            <img style="" src="/images/aag.svg" alt="" />
+            <img style="" src="/images/aag.svg" alt="aag" />
           </div>
         </div>
       </div>
