@@ -1,27 +1,39 @@
-const router = require("express").Router();
-const verify = require("../middleware/tokenVerification");
-const Team = require("../models/Team");
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
+/* eslint-disable require-jsdoc */
+/* eslint-disable linebreak-style */
+/* eslint-disable new-cap */
+const router = require('express').Router();
+const verify = require('../middleware/tokenVerification');
+const Team = require('../models/Team');
 
-router.post("/attack", verify, async (req, res) => {
-  var totalAttack =
+router.post('/attack', verify, async (req, res) => {
+  let totalAttack =
     req.body.soldier * 150 + req.body.aircraft * 300 + req.body.tank * 500;
   if (req.team.multiplier === true) {
     totalAttack *= 1.5;
   }
-  const defender = await Team.findOne({ name: req.body.defender });
-  //*Success
+  const defender = await Team.findOne({name: req.body.defender});
+  if (
+    defender.defenseCooldown !== 0 ||
+    req.team.attackCooldown !== 0 ||
+    defender.shield === true
+  ) {
+    res.redirect('/leaderboard/?success=no');
+  }
+  //* Success
   if (totalAttack - defender.dp >= 50) {
     Team.updateOne(
-      { email: defender.email },
-      {
-        $set: {
-          dp: defender.dp - totalAttack,
-          fp: parseInt(defender.fp / 2),
-          defenseCooldown: 60,
+        {email: defender.email},
+        {
+          $set: {
+            dp: defender.dp - totalAttack,
+            fp: parseInt(defender.fp / 2),
+            defenseCooldown: 60,
+          },
         },
-      },
-      { multi: true },
-      callback
+        {multi: true},
+        callback,
     );
     function callback(err, num) {
       if (err) {
@@ -29,35 +41,35 @@ router.post("/attack", verify, async (req, res) => {
       }
     }
     Team.updateOne(
-      { email: req.team.email },
-      {
-        $inc: {
-          "troops.soldiers": -req.body.soldier,
-          "troops.aircrafts": -req.body.aircraft,
-          "troops.tanks": -req.body.tank,
-          fp: parseInt(defender.fp / 2),
-          attackCooldown: 60,
+        {email: req.team.email},
+        {
+          $inc: {
+            'troops.soldiers': -req.body.soldier,
+            'troops.aircrafts': -req.body.aircraft,
+            'troops.tanks': -req.body.tank,
+            'fp': parseInt(defender.fp / 2),
+            'attackCooldown': 60,
+          },
         },
-      },
-      { multi: true },
-      attackcallback
+        {multi: true},
+        attackcallback,
     );
-    function attackcallback(err, num) {
+    function attackcallback(err, _num) {
       if (err) {
         console.log(err);
       }
     }
-    res.redirect("/leaderboard/?success=true");
+    res.redirect('/leaderboard/?success=true');
   } else {
-    //!Failure
+    // !Failure
     Team.updateOne(
-      { email: req.team.email },
-      {
-        $inc: { "troops.soldiers": -req.body.soldier },
-        $set: { attackCooldown: 30 },
-      },
-      { multi: true },
-      attackcallback
+        {email: req.team.email},
+        {
+          $inc: {'troops.soldiers': -req.body.soldier},
+          $set: {attackCooldown: 30},
+        },
+        {multi: true},
+        attackcallback,
     );
     function attackcallback(err, num) {
       if (err) {
@@ -65,19 +77,19 @@ router.post("/attack", verify, async (req, res) => {
       }
     }
     Team.updateOne(
-      { email: defender.email },
-      {
-        $set: { dp: defender.dp - totalAttack, defenseCooldown: 60 },
-      },
-      { multi: true },
-      callback
+        {email: defender.email},
+        {
+          $set: {dp: defender.dp - totalAttack, defenseCooldown: 60},
+        },
+        {multi: true},
+        callback,
     );
     function callback(err, num) {
       if (err) {
         console.log(err);
       }
     }
-    res.redirect("/leaderboard/?success=false");
+    res.redirect('/leaderboard/?success=false');
   }
 });
 

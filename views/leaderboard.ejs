@@ -6,7 +6,9 @@
    <h1 class="lb" style="color:green">Attack Successful!</h1>
   <% } else if (locals.success==='false') { %>
     <h1 class="lb" style="color:red">Attack Unsuccessful!</h1>
-  <% }%>
+  <% }else if (locals.success==='no') {%>
+    <h1 class="lb" style="color:red">You can't attack the target</h1>
+  <% } %>
   </div>
 <table>
   <tr>
