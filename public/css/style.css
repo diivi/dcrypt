@@ -434,6 +434,9 @@ input[type="number"]:focus {
   justify-content: space-between;
   padding: 0 2%;
 }
+.inn {
+  display: none;
+}
 .inputz {
   display: flex;
   justify-content: space-between;
@@ -465,11 +468,9 @@ input[type="number"]:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  -webkit-animation: flip 1s;
-  animation: flip 1s;
 }
 
-@-webkit-keyframes flip {
+/* @-webkit-keyframes flip {
   from {
     transform: rotateY(90deg);
   }
@@ -484,7 +485,7 @@ input[type="number"]:focus {
   to {
     transform: rotateY(0deg);
   }
-}
+} */
 .inventroop p + p {
   margin-top: 20px;
 

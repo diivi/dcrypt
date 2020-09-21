@@ -59,11 +59,12 @@
 (((element._id).toString()!==(locals.team._id).toString()) && element.shield===false&&element.defenseCooldown===0&&locals.team.attackCooldown===0){ %>
 <div id="pop<%= allteams.indexOf(element) %>" class="mymodal">
       <h1 data-name="<%= element.name %>">
+        <%= element.name %>
       </h1>
   <div class="twodivs">
   <div class="inventory">
     <h1 class="inv">Inventory</h1>
-    <div class="row">
+    <div class="row inn" >
     <div class="soldiers inventroop">
       <p>Soliders</p>
       <p><%= locals.team.troops.soldiers %> </p>
@@ -197,31 +198,22 @@
       e2 = document.getElementById('pop'+school);
     cta(e1, e2,{duration: 0.5, targetShowDuration:0.5, relativeToWindow:true},function (e2) {
     e2.style.display = "block";
-      $('#'+$(e2).attr('id')+' .inv').fadeIn(500)
-      $('#' + $(e2).attr('id') + ' .dep').fadeIn(500)
-      $('#' + $(e2).attr('id') + ' .inputz').fadeIn(500)
-    var defSelect='#'+$(e2).attr('id') + ' > h1';
-        $(defSelect).typewrite({
-        actions: [
-          {type: 'Attacking '+ $(defSelect).attr('data-name')},
-        ],
-        speed:20,
-        cursor:"|"
-      });
-  //  $(invSelect).typewrite({
-  //     actions: [
-  //       {type: 'Inventory'},
-  //     ],
-  //     speed: 20,
-  //     showCursor:false
-  //   });
-  //     $(depSelect).typewrite({
-  //       actions: [
-  //         {type: 'Deploy'},
-  //       ],
-  //       speed: 12,
-  //       showCursor: false
-  //     });
+      $('#' + $(e2).attr('id') + ' .inv').fadeIn(300)
+      $('#' + $(e2).attr('id') + ' .dep').fadeIn(300)
+      $('#' + $(e2).attr('id') + ' .inputz').fadeIn(300)
+      $('#' + $(e2).attr('id') + ' .inn')
+        .css("display", "flex")
+        .hide()
+        .fadeIn();
+
+    // var defSelect='#'+$(e2).attr('id') + ' > h1';
+    //     $(defSelect).typewrite({
+    //     actions: [
+    //       {type: 'Attacking '+ $(defSelect).attr('data-name')},
+    //     ],
+    //     speed:20,
+    //     cursor:"|"
+    //   });
     });
   }
   function closeModal(school) {
