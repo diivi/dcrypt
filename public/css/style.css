@@ -80,13 +80,14 @@ ul li a {
   text-decoration: none;
   color: white;
 }
+
 .lb {
   font-family: "Red Hat Display";
 
   font-family: "Red Hat Display";
   font-style: normal;
   font-weight: 500;
-  font-size: 64px;
+  font-size: 48px;
   line-height: 77px;
   margin: 0px 0px 2vw 0px;
   color: #ffffff;
@@ -1323,4 +1324,10 @@ img {
 }
 ::-webkit-scrollbar {
   width: 5px;
+}
+button:hover,
+input[type="submit"]:hover,
+.atkbtn:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
 }
