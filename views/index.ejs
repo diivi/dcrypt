@@ -1,28 +1,37 @@
 <%- include('header'); -%>
 <style>
-  lottie-player {
-    right: 0%;
-    width: 50vw;
-    height: 80vh;
-    top: 50%;
-    padding: 0%;
-    position: absolute;
-    transform: translateY(-50%);
-    z-index: -1;
+  .landimg {
+    float: right !important;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+  .landimg img {
+    margin-left: -5% !important;
+    flex: 0 0 110% !important;
+    display: table-cell;
+    vertical-align: middle;
   }
   @media only screen and (max-width: 1000px) {
-    lottie-player {
-      top: 0%;
-      margin-top: 20%;
+    .landimg {
+      float: none !important;
       width: 100vw;
-      height: 50vh;
-      padding: 0%;
-      position: relative;
-      transform: translate(0%, 0%);
+      height: auto;
+      margin-bottom: 5%;
+      display: flex;
+      flex-direction: column;
+    }
+    .landimg img {
+      margin-left: -10% !important;
+      flex: 0 0 100% !important;
+    }
+    .info-header {
+      top: 00%;
     }
   }
 </style>
-<div class="info-header">
+<div class="info-header ib-child">
   <h1>dCrypt</h1>
   <p class="info">
     dCrypt 2020 promises to be a cryptic hunt in a league of its own. We have
@@ -47,12 +56,7 @@
     Discord
   </button>
 </div>
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player
-  src="/extra/circle.json"
-  background="transparent"
-  speed="0.5"
-  loop
-  autoplay
-></lottie-player>
-<%- include('footer'); -%>
+<div class="landimg">
+  <img src="/images/landing.svg" alt="Home Illustration" />
+</div>
+<%-include('footer'); -%>

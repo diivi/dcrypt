@@ -79,7 +79,7 @@ router.post('/attack', verify, async (req, res) => {
     Team.updateOne(
         {email: defender.email},
         {
-          $set: {dp: defender.dp - totalAttack, defenseCooldown: 60},
+          $set: {defenseCooldown: 60},
         },
         {multi: true},
         callback,
