@@ -108,7 +108,7 @@ teamSchema.pre("updateOne", function (next) {
   try {
     if (data["$set"].dp > 0) {
       next();
-    } else {
+    } else if (data["$set"].dp < 0) {
       data["$set"].dp = 0;
       next();
     }
