@@ -8,6 +8,13 @@ const verify = require('../middleware/tokenVerification');
 const Team = require('../models/Team');
 
 router.post('/attack', verify, async (req, res) => {
+  if(req.body.soldier <0 || req.body.aircraft < 0 || req.body.tank < 0){
+    res.send('no')
+  }else if(req.body.soldier ==0 && req.body.aircraft == 0 && req.body.tank == 0){
+    res.redirect('/leaderboard/?success=zero');
+  }else{
+  if (req.team.troops.soldiers>=req.body.soldier && req.team.troops.tanks>=req.body.tank && req.team.troops.aircrafts>=req.body.aircraft )
+  {
   let totalAttack =
     req.body.soldier * 150 + req.body.aircraft * 300 + req.body.tank * 500;
   if (req.team.multiplier === true) {
@@ -91,6 +98,9 @@ router.post('/attack', verify, async (req, res) => {
     }
     res.redirect('/leaderboard/?success=false');
   }
+}else{
+  res.send('no')
+}}
 });
 
 module.exports = router;

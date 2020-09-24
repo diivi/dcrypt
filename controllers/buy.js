@@ -3,6 +3,9 @@ const verify = require("../middleware/tokenVerification");
 const Team = require("../models/Team");
 
 router.post("/buy", verify, async (req, res) => {
+  if(req.body.soldier<0 || req.body.aircraft <0 || req.body.bomber<0 || req.body.tank<0){
+    res.send('no')
+  }else{
   var totalCost =
     req.body.soldier * 100 +
     req.body.aircraft * 250 +
@@ -15,6 +18,7 @@ router.post("/buy", verify, async (req, res) => {
       {
         $set: {
           halfPrice: false,
+          discountsLeft: 0,
         },
       },
       { multi: true },
@@ -25,8 +29,7 @@ router.post("/buy", verify, async (req, res) => {
         console.log(err);
       }
     }
-  }
-  if (buyer.discountsLeft > 0) {
+  }else if (buyer.discountsLeft > 1) {
     totalCost *= 1 / 2;
     Team.updateOne(
       { email: req.team.email },
@@ -75,11 +78,14 @@ router.post("/buy", verify, async (req, res) => {
     res.redirect("/dashboard");
   } else {
     res.redirect("/shop/?error=buywrong");
-  }
+  }}
 });
 
 router.post("/powerup", verify, async (req, res) => {
-  const totalCost =
+  if(req.body.multiplier<0 || req.body.shield <0 || req.body.half<0 || req.body.dp<0){
+    res.send('no')
+  }else{
+    const totalCost =
     req.body.multiplier * 1000 +
     req.body.shield * 1000 +
     req.body.half * 1000 +
@@ -164,6 +170,7 @@ router.post("/powerup", verify, async (req, res) => {
   } else {
     res.redirect("/shop/?error=buywrong");
   }
+}
 });
 
 module.exports = router;

@@ -3,9 +3,13 @@ const verify = require("../middleware/tokenVerification");
 const Team = require("../models/Team");
 
 router.post("/defense", verify, async (req, res) => {
-  if (req.body.soldier == 0 && req.body.bomber == 0 && req.body.tank == 0) {
+  if (req.body.soldier < 0 && req.body.bomber < 0 && req.body.tank < 0) {
+    res.send('no')
+  }else if (req.body.soldier == 0 && req.body.bomber == 0 && req.body.tank == 0) {
     res.redirect("/dashboard/?success=allot");
   } else {
+    if (req.team.troops.soldiers>=req.body.soldier && req.team.troops.tanks>=req.body.tank && req.team.troops.bombers>=req.body.bomber )
+    {
     var totalDef = req.body.total;
     Team.updateOne(
       { email: req.team.email },
@@ -26,6 +30,8 @@ router.post("/defense", verify, async (req, res) => {
       }
     }
     res.redirect("/dashboard");
-  }
+  }else{
+    res.send('no')
+  }}
 });
 module.exports = router;

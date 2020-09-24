@@ -178,6 +178,11 @@
 <script src="/js/tw.min.js"></script>
 <script src="https://unpkg.com/scrollreveal"></script>
 <script type="text/javascript">
+  <% if (locals.success==='zero') { %>
+  window.onload=function(){
+    alert('Select Atleast one troop to attack!')
+  }
+  <% } %>
     ScrollReveal({
       reset:true,
     }).reveal('tr',{
