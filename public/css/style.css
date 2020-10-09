@@ -1107,9 +1107,9 @@ img {
   }
   .sidebyside {
     display: flex;
-    width: 100%;
+    width: 80%;
     position: relative;
-    margin-left: -7.5%;
+    margin-left: -5%;
   }
   .question {
     flex: 0 0 100%;
@@ -1246,6 +1246,12 @@ img {
     text-align: right;
     font-size: 12px;
     line-height: 60px;
+  }
+  .qtext {
+    font-size: 18px;
+  }
+  .attacher {
+    padding: 1.8vw 2.4vw;
   }
   .tablecontain {
     padding: 2% 2%;
