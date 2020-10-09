@@ -13,62 +13,63 @@ router.post(
     '/register',
     [body('name').trim().escape(), body('school').trim().escape()],
     async (req, res) => {
-      const {error} = validateTeam(req.body);
-      if (error) {
-        original = error._original;
-        errors = [];
-        for (errorName of error.details) {
-          errors.push(errorName.path[0]);
-        }
-        return res.render('register.ejs', {
-          errors: errors,
-          original: original,
-        });
-      } else {
-        original = {
-          email: req.body.email,
-          password: req.body.password,
-          school: req.body.school,
-          discord: req.body.discord,
-          name: req.body.name,
-        };
-      }
-      response = await axios({
-        method: 'post',
-        url: 'https://www.google.com/recaptcha/api/siteverify',
-        params: {
-          secret: '6LefzcYZAAAAAOpTOSNQ8-JoBwfMeadgHgJt8F-O',
-          response: req.body['g-recaptcha-response'],
-        },
-      });
-      const recap = response.data.success;
-      if (!recap) {
-        return res.render('register.ejs', {
-          galatRecaptcha: true,
-          original: original,
-        });
-      }
-      const teamRegistered = await Team.findOne({email: req.body.email});
-      if (teamRegistered) {
-        return res.render('register.ejs', {alregistered: true});
-      }
+      res.send('Registrations Closed.')
+      // const {error} = validateTeam(req.body);
+      // if (error) {
+      //   original = error._original;
+      //   errors = [];
+      //   for (errorName of error.details) {
+      //     errors.push(errorName.path[0]);
+      //   }
+      //   return res.render('register.ejs', {
+      //     errors: errors,
+      //     original: original,
+      //   });
+      // } else {
+      //   original = {
+      //     email: req.body.email,
+      //     password: req.body.password,
+      //     school: req.body.school,
+      //     discord: req.body.discord,
+      //     name: req.body.name,
+      //   };
+      // }
+      // response = await axios({
+      //   method: 'post',
+      //   url: 'https://www.google.com/recaptcha/api/siteverify',
+      //   params: {
+      //     secret: '6LefzcYZAAAAAOpTOSNQ8-JoBwfMeadgHgJt8F-O',
+      //     response: req.body['g-recaptcha-response'],
+      //   },
+      // });
+      // const recap = response.data.success;
+      // if (!recap) {
+      //   return res.render('register.ejs', {
+      //     galatRecaptcha: true,
+      //     original: original,
+      //   });
+      // }
+      // const teamRegistered = await Team.findOne({email: req.body.email});
+      // if (teamRegistered) {
+      //   return res.render('register.ejs', {alregistered: true});
+      // }
 
-      const salt = await bcrypt.genSalt(10);
-      const hashed = await bcrypt.hash(req.body.password, salt);
+      // const salt = await bcrypt.genSalt(10);
+      // const hashed = await bcrypt.hash(req.body.password, salt);
 
-      const team = new Team({
-        school: req.body.school.trim(),
-        email: req.body.email.trim(),
-        password: hashed,
-        discord: req.body.discord.trim(),
-        name: req.body.name.trim(),
-      });
-      try {
-        const registered = await team.save();
-        res.render('register.ejs', {registered: true});
-      } catch (error) {
-        res.status(400).send(error);
-      }
+      // const team = new Team({
+      //   school: req.body.school.trim(),
+      //   email: req.body.email.trim(),
+      //   password: hashed,
+      //   discord: req.body.discord.trim(),
+      //   name: req.body.name.trim(),
+      // });
+      // try {
+      //   const registered = await team.save();
+      //   res.render('register.ejs', {registered: true});
+      // } catch (error) {
+      //   res.status(400).send(error);
+      // }
     },
 );
 

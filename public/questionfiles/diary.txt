@@ -1,0 +1,13 @@
+Wednesday, June 20, 1979 
+
+Dear Diary
+
+I am very salty. I changed my password yesterday to johnnyspassword but then my PC crashed, and now my shadow entry is all wrong for some reason. Look :
+
+ymaqCnGXvnWyetgQLVVUXP8ym3xdNCPDY96M9QVsYHfzmaPeq636V/hCBkjhOwH/cvKKpQ/FV0Hro/USSb8AV1:18346:0:99999:7:::
+
+Luckily, my superuser linux friend was able to fix the hash as well as the other thing that was wrong. 
+
+Which is a good thing, because i am johnny and i was very salty.
+
+johnny
