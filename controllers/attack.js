@@ -87,7 +87,7 @@ router.post('/attack', verify, async (req, res) => {
             {
               $set: {defenseCooldown: 60},
             },
-            {multi: true},
+            {multi: true},  
             callback,
         );
         function callback(err, num) {

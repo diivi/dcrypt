@@ -1,52 +1,17 @@
 <%- include('headerin'); -%>
 <div id="questionz">
   <h1 class="heading">Questions</h1>
-  <% if (Date.now() < new Date("Oct 9, 2020 00:00:00")) { %>
-  <h1 style="text-align: center; color: white">dCrypt Goes Live in :</h1>
-  <div class="countdown">
-    <div class="box">
-      <h2 id="days">0</h2>
-      <span>Days</span>
-    </div>
-    <div class="box">
-      <h2 id="hours">0</h2>
-
-      <span>Hours</span>
-    </div>
-    <div class="box">
-      <h2 id="minutes">0</h2>
-
-      <span>Minutes</span>
-    </div>
-    <div class="box">
-      <h2 id="seconds">0</h2>
-
-      <span>Seconds</span>
-    </div>
+  <% if (Date.now() > new Date("Oct 12, 2020 00:00:00")) { %>
+  <div id="thank">
+    <h1 style="text-align: center; color: white">Thanks for playing!</h1>
+    <br />
+    <p>
+      We had fun, we hope you did too! Click
+      <a href="https://github.com/divided7/dcrypt">here</a> to view the source
+      code, and <a href="https://instagram.com/prathmeshmackeja">here</a> to
+      appreciate the designer!
+    </p>
   </div>
-  <script>
-    window.onload = function () {
-      var countDownDate = new Date("Oct 10, 2020 00:00:00").getTime();
-
-      var x = setInterval(function () {
-        var now = new Date().getTime();
-
-        var distance = countDownDate - now;
-
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerHTML = days;
-        document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = minutes;
-        document.getElementById("seconds").innerHTML = seconds;
-      }, 1000);
-    };
-  </script>
   <% } else { %>
   <div class="questions">
     <% locals.questions.forEach( function (element){ %>

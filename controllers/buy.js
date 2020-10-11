@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
 /* eslint-disable linebreak-style */
 const router = require('express').Router();

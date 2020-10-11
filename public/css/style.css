@@ -9,6 +9,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+#thank {
+  padding: 0vh 5vh;
+}
+#thank h1 {
+  font-size: 8vh;
+  color: white;
+}
+#thank p {
+  color: white;
+  font-size: 2vw;
+}
+#thank a {
+  color: red;
+}
 html,
 body {
   max-width: 100%;
