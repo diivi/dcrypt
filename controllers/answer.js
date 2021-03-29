@@ -4,7 +4,6 @@ const Team = require("../models/Team");
 const Log = require("../models/Log");
 const Questions = require("../models/Questions");
 const mongoose = require("mongoose");
-const Badboy = require("../models/Badboys");
 
 require("dotenv").config();
 

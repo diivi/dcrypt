@@ -81,17 +81,21 @@ router.post('/login', async (req, res) => {
   const team = await Team.findOne({email: req.body.email});
   if (!team) return res.render('login.ejs', {failure: true, active: 'login'});
 
-  const passCheck = await bcrypt.compare(req.body.password, team.password);
+  if (team.email=="guest@dcrypt.in"){
+    const passCheck = await bcrypt.compare(req.body.password, team.password);
   if (!passCheck) {
     return res.render('login.ejs', {failure: true, active: 'login'});
   }
-
   const token = jwt.sign({_id: team._id}, process.env.JWT);
   res.cookie('team', token, {
     httpOnly: true,
     maxAge: 60 * 60 * 1000,
   });
   res.redirect('/dashboard');
+  }else{
+    res.send('Please login via the guest account.')
+  }
+  
 });
 
 router.post('/passchange', async (req, res) => {
