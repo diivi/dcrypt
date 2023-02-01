@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const verify = require("../middleware/tokenVerification");
 const verifynCrypt = require("../middleware/ncryptVerification");
 const Question = require("../models/Questions");
 

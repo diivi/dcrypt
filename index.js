@@ -1,18 +1,17 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
-/* eslint-disable linebreak-style */
 const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 
+// cronjobs
 const powerupManager = require("./jobs/powerups");
 powerupManager.start();
 const cooldownManager = require("./jobs/cooldown");
 cooldownManager.start();
 
+
+// routes
 const authRoute = require("./routes/auth");
 const dashRoute = require("./routes/dashboard");
 const boardRoute = require("./routes/leaderboard");
@@ -28,8 +27,6 @@ const ansRoute = require("./controllers/answer");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
-const Team = require("./models/Team");
 
 const port = 5000 || process.env.PORT;
 require("dotenv").config();
@@ -56,9 +53,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-
 app.use("/", ansRoute);
-
 app.use("/", authRoute);
 app.use("/", dashRoute);
 app.use("/", boardRoute);

@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-// eslint-disable-next-line new-cap
 const router = require("express").Router();
 const verify = require("../middleware/tokenVerification");
 const Team = require("../models/Team");
